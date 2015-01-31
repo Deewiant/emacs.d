@@ -12,6 +12,11 @@
 	evil-tabs))
 (dolist (p package-list) (unless (package-installed-p p) (package-install p)))
 
+; This has to be done early, or newly opened buffers end up in some kind of
+; incorrect state where evil-mode is enabled but doesn't work, so it needs to
+; be toggled twice before things work.
+(global-evil-tabs-mode t)
+
 (require 'evil)
 (require 'evil-surround)
 (evil-mode 1)
@@ -20,7 +25,6 @@
 (global-evil-matchit-mode 1)
 (evil-snipe-replace-evil)
 (global-evil-surround-mode 1)
-(global-evil-tabs-mode t)
 
 (column-number-mode)
 
