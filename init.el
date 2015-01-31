@@ -34,6 +34,7 @@
       backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 (load-theme 'sanityinc-tomorrow-night t)
+(setq evil-default-cursor '("grey" t))
 
 ; No scrollbars, no toolbar.
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
