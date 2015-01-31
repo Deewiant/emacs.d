@@ -28,6 +28,8 @@
 
 (column-number-mode)
 
+(setq-default indent-tabs-mode nil)
+
 ; Backup into a global directory instead of next to the edited file,
 ; and don't clobber symlinks.
 (setq backup-by-copying t
