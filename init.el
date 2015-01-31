@@ -30,6 +30,9 @@
 
 (setq-default indent-tabs-mode nil)
 
+(c-add-style "deewiant" '("k&r" (c-basic-offset . 3)))
+(setq-default c-default-style "deewiant")
+
 ; Backup into a global directory instead of next to the edited file,
 ; and don't clobber symlinks.
 (setq backup-by-copying t
