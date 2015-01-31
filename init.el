@@ -8,6 +8,7 @@
 
 (setq package-list
       '(color-theme-sanityinc-tomorrow
+        diminish
         evil evil-commentary evil-jumper evil-matchit evil-snipe evil-surround
 	evil-tabs))
 (dolist (p package-list) (unless (package-installed-p p) (package-install p)))
@@ -27,6 +28,9 @@
 (global-evil-surround-mode 1)
 
 (column-number-mode)
+
+(require 'diminish)
+(diminish 'undo-tree-mode)
 
 (setq-default indent-tabs-mode nil)
 
