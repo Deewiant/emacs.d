@@ -8,6 +8,7 @@
 
 (setq package-list
       '(color-theme-sanityinc-tomorrow
+        company
         diminish
         evil evil-commentary evil-jumper evil-matchit evil-snipe evil-surround
 	evil-tabs))
@@ -36,6 +37,8 @@
 
 (c-add-style "deewiant" '("k&r" (c-basic-offset . 3)))
 (setq-default c-default-style "deewiant")
+
+(add-hook 'after-init-hook 'global-company-mode)
 
 ; Backup into a global directory instead of next to the edited file,
 ; and don't clobber symlinks.
