@@ -12,7 +12,8 @@
         diminish
         evil evil-commentary evil-jumper evil-matchit evil-snipe evil-surround
         evil-tabs
-        glsl-mode))
+        glsl-mode
+        haskell-mode))
 (dolist (p package-list) (unless (package-installed-p p) (package-install p)))
 
 ; This has to be done early, or newly opened buffers end up in some kind of
