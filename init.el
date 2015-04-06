@@ -10,13 +10,13 @@
 
 (setq package-list
       '(color-theme-approximate
-        color-theme-sanityinc-tomorrow
         company irony company-irony
         diminish
         evil evil-commentary evil-jumper evil-matchit evil-snipe evil-surround
         evil-tabs
         glsl-mode
-        haskell-mode))
+        haskell-mode
+        sublime-themes))
 (dolist (p package-list) (unless (package-installed-p p) (package-install p)))
 
 ; This has to be done early, or newly opened buffers end up in some kind of
@@ -68,7 +68,7 @@
       backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 (color-theme-approximate-on)
-(load-theme 'sanityinc-tomorrow-night t)
+(load-theme 'spolsky t)
 (setq evil-default-cursor '("grey" t))
 
 ; No scrollbars, no toolbar.
