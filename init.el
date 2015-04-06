@@ -9,7 +9,8 @@
 (unless package-archive-contents (package-refresh-contents))
 
 (setq package-list
-      '(color-theme-sanityinc-tomorrow
+      '(color-theme-approximate
+        color-theme-sanityinc-tomorrow
         company irony company-irony
         diminish
         evil evil-commentary evil-jumper evil-matchit evil-snipe evil-surround
@@ -66,6 +67,7 @@
 (setq backup-by-copying t
       backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
+(color-theme-approximate-on)
 (load-theme 'sanityinc-tomorrow-night t)
 (setq evil-default-cursor '("grey" t))
 
