@@ -38,6 +38,7 @@
 (column-number-mode)
 
 (global-linum-mode 1)
+(setq linum-format 'dynamic)
 
 (require 'diminish)
 (diminish 'evil-snipe-mode)
