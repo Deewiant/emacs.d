@@ -24,12 +24,14 @@
 (global-evil-tabs-mode t)
 
 (require 'evil)
+(require 'evil-snipe)
 (require 'evil-surround)
 (evil-mode 1)
 (evil-commentary-mode)
 (evil-jumper-mode)
 (global-evil-matchit-mode 1)
-(evil-snipe-replace-evil)
+(setq evil-snipe-override-evil t)
+(global-evil-snipe-mode 1)
 (global-evil-surround-mode 1)
 
 (column-number-mode)
