@@ -38,6 +38,7 @@
 (column-number-mode)
 
 (require 'diminish)
+(diminish 'evil-snipe-mode)
 (diminish 'undo-tree-mode)
 
 (setq-default indent-tabs-mode nil)
