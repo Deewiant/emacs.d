@@ -1,3 +1,5 @@
+(add-to-list 'load-path "~/.emacs.d/load/")
+
 (require 'package)
 (setq package-archives
       '(("gnu" . "https://elpa.gnu.org/packages/")
