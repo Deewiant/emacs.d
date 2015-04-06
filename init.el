@@ -37,6 +37,8 @@
 
 (column-number-mode)
 
+(global-linum-mode 1)
+
 (require 'diminish)
 (diminish 'evil-snipe-mode)
 (diminish 'undo-tree-mode)
