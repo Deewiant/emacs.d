@@ -16,6 +16,7 @@
         evil-tabs
         glsl-mode
         haskell-mode
+        linum-relative
         sublime-themes))
 (dolist (p package-list) (unless (package-installed-p p) (package-install p)))
 
@@ -37,8 +38,13 @@
 
 (column-number-mode)
 
+(require 'linum-relative)
+(setq linum-relative-current-symbol "")
 (global-linum-mode 1)
-(setq linum-format 'dynamic)
+
+; Some themes see fit to override linum-format, breaking linum-relative, so make
+; sure they fail.
+(customize-set-variable 'linum-format linum-format)
 
 (require 'diminish)
 (diminish 'evil-snipe-mode)
