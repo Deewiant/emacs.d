@@ -48,6 +48,8 @@
 ; sure they fail.
 (customize-set-variable 'linum-format linum-format)
 
+(show-paren-mode 1)
+
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
