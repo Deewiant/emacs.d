@@ -79,6 +79,10 @@
 (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
 
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(setq haskell-indentation-layout-offset 3)
+(setq haskell-indentation-left-offset 3)
+(setq haskell-indentation-starter-offset 3)
+(setq haskell-indentation-where-pre-offset 1)
 
 ; Backup into a global directory instead of next to the edited file,
 ; and don't clobber symlinks.
