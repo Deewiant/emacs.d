@@ -78,6 +78,8 @@
 (eval-after-load 'company '(add-to-list 'company-backends 'company-irony))
 (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
 
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
 ; Backup into a global directory instead of next to the edited file,
 ; and don't clobber symlinks.
 (setq backup-by-copying t
