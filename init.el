@@ -16,7 +16,9 @@
         evil-tabs
         glsl-mode
         haskell-mode
+        helm helm-projectile
         linum-relative
+        projectile
         sublime-themes))
 (dolist (p package-list) (unless (package-installed-p p) (package-install p)))
 
@@ -45,6 +47,10 @@
 ; Some themes see fit to override linum-format, breaking linum-relative, so make
 ; sure they fail.
 (customize-set-variable 'linum-format linum-format)
+
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
 
 (require 'diminish)
 (diminish 'evil-snipe-mode)
