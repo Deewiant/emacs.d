@@ -19,6 +19,7 @@
         helm helm-projectile
         linum-relative
         projectile
+        smooth-scrolling
         sublime-themes))
 (dolist (p package-list) (unless (package-installed-p p) (package-install p)))
 
@@ -49,6 +50,9 @@
 (customize-set-variable 'linum-format linum-format)
 
 (show-paren-mode 1)
+
+(require 'smooth-scrolling)
+(setq smooth-scroll-margin 5)
 
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
