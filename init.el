@@ -12,6 +12,7 @@
       '(color-theme-approximate
         company irony company-irony
         diminish
+        dtrt-indent
         evil evil-commentary evil-jumper evil-matchit evil-snipe evil-surround
         evil-tabs
         glsl-mode
@@ -53,6 +54,9 @@
 
 (require 'smooth-scrolling)
 (setq smooth-scroll-margin 5)
+
+(require 'dtrt-indent)
+(dtrt-indent-mode 1)
 
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
