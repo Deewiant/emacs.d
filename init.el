@@ -33,6 +33,7 @@
 (require 'evil-snipe)
 (require 'evil-surround)
 (evil-mode 1)
+(setq evil-vsplit-window-right 1)
 (evil-commentary-mode)
 (evil-jumper-mode)
 (global-evil-matchit-mode 1)
