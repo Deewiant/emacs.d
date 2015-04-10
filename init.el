@@ -16,6 +16,7 @@
         evil evil-commentary evil-jumper evil-matchit evil-snipe evil-surround
         evil-tabs
         glsl-mode
+        guide-key
         haskell-mode
         helm helm-projectile
         linum-relative
@@ -60,6 +61,10 @@
 
 (require 'dtrt-indent)
 (dtrt-indent-mode 1)
+
+(require 'guide-key)
+(setq guide-key/guide-key-sequence t)
+(guide-key-mode 1)
 
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
