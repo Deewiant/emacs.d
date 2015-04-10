@@ -70,6 +70,7 @@
 (diminish 'undo-tree-mode)
 
 (setq-default indent-tabs-mode nil)
+(setq standard-indent 3)
 
 (c-add-style "deewiant" '("k&r" (c-basic-offset . 3)))
 (setq-default c-default-style "deewiant")
