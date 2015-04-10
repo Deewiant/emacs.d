@@ -41,6 +41,8 @@
 (global-evil-snipe-mode 1)
 (global-evil-surround-mode 1)
 
+(define-key evil-insert-state-map (kbd "RET") 'comment-indent-new-line)
+
 (column-number-mode)
 
 (require 'linum-relative)
