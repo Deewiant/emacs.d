@@ -42,6 +42,9 @@
 (global-evil-snipe-mode 1)
 (global-evil-surround-mode 1)
 
+(defun yank-to-eol () (interactive) (evil-yank (point) (point-at-eol)))
+
+(define-key evil-normal-state-map "Y" 'yank-to-eol)
 (define-key evil-insert-state-map (kbd "RET") 'comment-indent-new-line)
 
 (column-number-mode)
