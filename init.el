@@ -14,7 +14,6 @@
         diminish
         dtrt-indent
         evil evil-commentary evil-jumper evil-matchit evil-snipe evil-surround
-        evil-tabs
         glsl-mode
         guide-key
         haskell-mode
@@ -24,11 +23,6 @@
         smooth-scrolling
         sublime-themes))
 (dolist (p package-list) (unless (package-installed-p p) (package-install p)))
-
-; This has to be done early, or newly opened buffers end up in some kind of
-; incorrect state where evil-mode is enabled but doesn't work, so it needs to
-; be toggled twice before things work.
-(global-evil-tabs-mode t)
 
 (require 'evil)
 (require 'evil-snipe)
