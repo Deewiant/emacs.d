@@ -10,6 +10,7 @@
 
 (setq package-list
       '(color-theme-approximate
+        column-enforce-mode
         company irony company-irony
         diminish
         dtrt-indent
@@ -36,9 +37,15 @@
 (global-evil-snipe-mode 1)
 (global-evil-surround-mode 1)
 
+(defun toggle-column-enforcement ()
+  (interactive)
+  (if column-enforce-mode
+      (column-enforce-mode -1)
+    (column-enforce-mode t)))
 (defun yank-to-eol () (interactive) (evil-yank (point) (point-at-eol)))
 
 (define-key evil-normal-state-map "Y" 'yank-to-eol)
+(define-key evil-normal-state-map (kbd "RET") 'toggle-column-enforcement)
 (define-key evil-insert-state-map (kbd "RET") 'comment-indent-new-line)
 
 (column-number-mode)
