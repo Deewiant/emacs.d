@@ -15,6 +15,7 @@
         diminish
         dtrt-indent
         evil evil-commentary evil-jumper evil-matchit evil-snipe evil-surround
+        flycheck flycheck-haskell
         glsl-mode
         guide-key
         haskell-mode hi2
@@ -80,6 +81,10 @@
 (diminish 'evil-snipe-mode)
 (diminish 'guide-key-mode)
 (diminish 'undo-tree-mode)
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
 
 (setq sentence-end-double-space nil)
 
