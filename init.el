@@ -8,24 +8,24 @@
 (package-initialize t)
 (unless package-archive-contents (package-refresh-contents))
 
-(setq package-list
-      '(color-theme-approximate
-        column-enforce-mode
-        company irony company-irony
-        diminish
-        dtrt-indent
-        evil evil-commentary evil-jumper evil-matchit evil-snipe evil-surround
-        flycheck flycheck-haskell
-        glsl-mode
-        guide-key
-        haskell-mode hi2
-        helm helm-projectile
-        linum-relative
-        projectile
-        smooth-scrolling
-        sublime-themes))
-(dolist (p package-list)
-  (if (package-installed-p p) (package-activate p) (package-install p)))
+(let ((package-list
+       '(color-theme-approximate
+         column-enforce-mode
+         company irony company-irony
+         diminish
+         dtrt-indent
+         evil evil-commentary evil-jumper evil-matchit evil-snipe evil-surround
+         flycheck flycheck-haskell
+         glsl-mode
+         guide-key
+         haskell-mode hi2
+         helm helm-projectile
+         linum-relative
+         projectile
+         smooth-scrolling
+         sublime-themes)))
+  (dolist (p package-list)
+    (if (package-installed-p p) (package-activate p) (package-install p))))
 
 (require 'evil)
 (require 'evil-snipe)
