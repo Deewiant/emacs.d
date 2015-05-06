@@ -118,11 +118,13 @@
 (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
 
 ; Backup and auto-save into a global directory instead of next to the edited
-; file, and don't clobber hard links when backing up.
+; file, don't clobber hard links when backing up, and delete old backups
+; silently.
 (make-directory "~/.emacs.d/auto-saves" t)
 (setq backup-by-copying t
       backup-directory-alist '(("." . "~/.emacs.d/backups/"))
-      auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-saves/" t)))
+      auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-saves/" t))
+      delete-old-versions t)
 
 (color-theme-approximate-on)
 (load-theme 'spolsky t)
