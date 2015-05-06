@@ -17,7 +17,7 @@
         evil evil-commentary evil-jumper evil-matchit evil-snipe evil-surround
         glsl-mode
         guide-key
-        haskell-mode
+        haskell-mode hi2
         helm helm-projectile
         linum-relative
         projectile
@@ -104,11 +104,14 @@
 (eval-after-load 'company '(add-to-list 'company-backends 'company-irony))
 (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
 
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(setq haskell-indentation-layout-offset 3)
-(setq haskell-indentation-left-offset 3)
-(setq haskell-indentation-starter-offset 3)
-(setq haskell-indentation-where-pre-offset 1)
+(require 'hi2)
+(add-hook 'haskell-mode-hook 'turn-on-hi2)
+(setq hi2-ifte-offset 3)
+(setq hi2-layout-offset 3)
+(setq hi2-left-offset 3)
+(setq hi2-starter-offset 3)
+(setq hi2-where-pre-offset 1)
+(setq hi2-where-post-offset 3)
 
 ; Backup into a global directory instead of next to the edited file,
 ; and don't clobber symlinks.
