@@ -115,6 +115,7 @@
 (setq hi2-starter-offset 3)
 (setq hi2-where-pre-offset 1)
 (setq hi2-where-post-offset 3)
+(define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
 
 ; Backup into a global directory instead of next to the edited file,
 ; and don't clobber symlinks.
