@@ -134,5 +134,5 @@
 
 (setq inhibit-startup-screen t)
 
-(if (file-exists-p "~/.emacs.d/custom")
-    (mapc 'load (directory-files "~/.emacs.d/custom" t ".*\.el$" t)))
+(make-directory "~/.emacs.d/custom" t)
+(mapc 'load (directory-files "~/.emacs.d/custom" t ".*\.el$" t))
