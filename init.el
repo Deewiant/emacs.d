@@ -76,7 +76,9 @@
 (helm-projectile-on)
 
 (require 'diminish)
+(diminish 'evil-commentary-mode)
 (diminish 'evil-snipe-mode)
+(diminish 'guide-key-mode)
 (diminish 'undo-tree-mode)
 
 (setq sentence-end-double-space nil)
