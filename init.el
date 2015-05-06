@@ -121,3 +121,6 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
 (setq inhibit-startup-screen t)
+
+(if (file-exists-p "~/.emacs.d/custom")
+    (mapc 'load (directory-files "~/.emacs.d/custom" t ".*\.el$" t)))
