@@ -104,7 +104,10 @@
 (eval-after-load 'company '(add-to-list 'company-backends 'company-irony))
 (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
 
+(require 'haskell-interactive-mode)
+(require 'haskell-process)
 (require 'hi2)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 (add-hook 'haskell-mode-hook 'turn-on-hi2)
 (setq hi2-ifte-offset 3)
 (setq hi2-layout-offset 3)
