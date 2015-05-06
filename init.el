@@ -78,6 +78,8 @@
 (diminish 'evil-snipe-mode)
 (diminish 'undo-tree-mode)
 
+(setq sentence-end-double-space nil)
+
 (setq-default indent-tabs-mode nil)
 (setq standard-indent 3)
 
