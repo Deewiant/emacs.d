@@ -117,10 +117,12 @@
 (setq hi2-where-post-offset 3)
 (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
 
-; Backup into a global directory instead of next to the edited file,
-; and don't clobber symlinks.
+; Backup and auto-save into a global directory instead of next to the edited
+; file, and don't clobber hard links when backing up.
+(make-directory "~/.emacs.d/auto-saves" t)
 (setq backup-by-copying t
-      backup-directory-alist '(("." . "~/.emacs.d/backups")))
+      backup-directory-alist '(("." . "~/.emacs.d/backups/"))
+      auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-saves/" t)))
 
 (color-theme-approximate-on)
 (load-theme 'spolsky t)
