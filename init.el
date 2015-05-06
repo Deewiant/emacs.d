@@ -5,7 +5,7 @@
       '(("gnu" . "https://elpa.gnu.org/packages/")
 	("melpa-stable" . "http://stable.melpa.org/packages/")
 	("melpa-unstable" . "http://unstable.melpa.org/packages/")))
-(package-initialize)
+(package-initialize t)
 (unless package-archive-contents (package-refresh-contents))
 
 (setq package-list
@@ -23,7 +23,8 @@
         projectile
         smooth-scrolling
         sublime-themes))
-(dolist (p package-list) (unless (package-installed-p p) (package-install p)))
+(dolist (p package-list)
+  (if (package-installed-p p) (package-activate p) (package-install p)))
 
 (require 'evil)
 (require 'evil-snipe)
