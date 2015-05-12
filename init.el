@@ -41,6 +41,10 @@
 (setq evil-snipe-scope 'visible)
 (setq evil-snipe-repeat-scope 'whole-buffer)
 
+; Don't consider evil-snipe's ; and , for repeating with . (dot).
+(evil-declare-ignore-repeat 'evil-snipe-repeat)
+(evil-declare-ignore-repeat 'evil-snipe-repeat-reverse)
+
 (defun toggle-column-enforcement ()
   (interactive)
   (if column-enforce-mode
