@@ -38,6 +38,8 @@
 (setq evil-snipe-override-evil t)
 (global-evil-snipe-mode 1)
 (global-evil-surround-mode 1)
+(setq evil-snipe-scope 'visible)
+(setq evil-snipe-repeat-scope 'whole-buffer)
 
 (defun toggle-column-enforcement ()
   (interactive)
