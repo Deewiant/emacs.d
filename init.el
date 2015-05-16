@@ -103,10 +103,14 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-idle-delay 0)
 (setq company-minimum-prefix-length 2)
-(define-key company-active-map (kbd "RET") nil)
-(define-key company-active-map (kbd "<return>") nil)
-(define-key company-active-map (kbd "S-RET") 'company-complete-selection)
-(define-key company-active-map (kbd "S-<return>") 'company-complete-selection)
+(eval-after-load 'company
+  '(progn
+     (define-key company-active-map (kbd "RET") nil)
+     (define-key company-active-map (kbd "<return>") nil)
+     (define-key company-active-map (kbd "S-RET")
+       'company-complete-selection)
+     (define-key company-active-map (kbd "S-<return>")
+       'company-complete-selection)))
 
 (add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'c++-mode-hook 'irony-mode)
