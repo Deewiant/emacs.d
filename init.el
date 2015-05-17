@@ -47,7 +47,7 @@
 
 (defun toggle-column-enforcement ()
   (interactive)
-  (if column-enforce-mode
+  (if (and (boundp 'column-enforce-mode) column-enforce-mode)
       (column-enforce-mode -1)
     (column-enforce-mode t)))
 (defun yank-to-eol () (interactive) (evil-yank (point) (point-at-eol)))
