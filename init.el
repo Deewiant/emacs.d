@@ -19,7 +19,7 @@
          glsl-mode
          guide-key
          haskell-mode
-         helm helm-projectile
+         helm helm-dash helm-projectile
          linum-relative
          projectile
          smooth-scrolling
