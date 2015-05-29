@@ -140,6 +140,22 @@
 (setq haskell-indentation-where-post-offset 2)
 (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
 
+; Show the Haskell indentation guides only in the insert and emacs states.
+(defun my-haskell-indentation-show-guides ()
+  (when (eq major-mode 'haskell-mode)
+    (haskell-indentation-enable-show-indentations)))
+(defun my-haskell-indentation-hide-guides ()
+  (when (eq major-mode 'haskell-mode)
+    (haskell-indentation-disable-show-indentations)))
+(add-hook 'evil-normal-state-entry-hook
+          'my-haskell-indentation-hide-guides)
+(dolist (state '(insert emacs))
+  (eval `(progn
+           (add-hook ',(intern (format "evil-%S-state-entry-hook" state))
+                     'my-haskell-indentation-show-guides)
+           (add-hook ',(intern (format "evil-%S-state-exit-hook" state))
+                     'my-haskell-indentation-hide-guides))))
+
 ; Backup and auto-save into a global directory instead of next to the edited
 ; file, don't clobber hard links when backing up, and delete old backups
 ; silently.
