@@ -18,7 +18,7 @@
          flycheck flycheck-haskell
          glsl-mode
          guide-key
-         haskell-mode hi2
+         haskell-mode
          helm helm-projectile
          linum-relative
          projectile
@@ -129,15 +129,15 @@
 
 (require 'haskell-interactive-mode)
 (require 'haskell-process)
-(require 'hi2)
+(require 'haskell-indentation)
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-(add-hook 'haskell-mode-hook 'turn-on-hi2)
-(setq hi2-ifte-offset 3)
-(setq hi2-layout-offset 3)
-(setq hi2-left-offset 3)
-(setq hi2-starter-offset 3)
-(setq hi2-where-pre-offset 1)
-(setq hi2-where-post-offset 2)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(setq haskell-indentation-ifte-offset 3)
+(setq haskell-indentation-layout-offset 3)
+(setq haskell-indentation-left-offset 3)
+(setq haskell-indentation-starter-offset 3)
+(setq haskell-indentation-where-pre-offset 1)
+(setq haskell-indentation-where-post-offset 2)
 (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
 
 ; Backup and auto-save into a global directory instead of next to the edited
