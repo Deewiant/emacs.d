@@ -114,9 +114,12 @@
      (define-key company-active-map (kbd "S-<return>")
        'company-complete-selection)))
 
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
+(defun my-irony-mode-enable ()
+  (when (memq major-mode irony-supported-major-modes)
+    (irony-mode 1)))
+(add-hook 'c-mode-hook 'my-irony-mode-enable)
+(add-hook 'c++-mode-hook 'my-irony-mode-enable)
+(add-hook 'objc-mode-hook 'my-irony-mode-enable)
 (defun my-irony-mode-hook ()
    (define-key irony-mode-map [remap completion-at-point]
       'irony-completion-at-point-async)
