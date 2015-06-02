@@ -31,6 +31,7 @@
 (require 'evil-snipe)
 (require 'evil-surround)
 (evil-mode 1)
+(setq-default evil-symbol-word-search t)
 (setq evil-vsplit-window-right 1)
 (evil-commentary-mode)
 (evil-jumper-mode)
