@@ -180,6 +180,7 @@
 (load-theme 'spolsky t)
 (setq evil-default-cursor '("grey" t))
 
+(setq blink-cursor-blinks 1)
 (setq echo-keystrokes 0.1)
 (setq x-stretch-cursor t)
 
