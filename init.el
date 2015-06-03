@@ -175,6 +175,8 @@
 (color-theme-approximate-on)
 (load-theme 'spolsky t)
 (setq evil-default-cursor '("grey" t))
+
+(setq echo-keystrokes 0.1)
 (setq x-stretch-cursor t)
 
 (when window-system
