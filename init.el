@@ -179,6 +179,8 @@
 (setq echo-keystrokes 0.1)
 (setq x-stretch-cursor t)
 
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b"))))
 
