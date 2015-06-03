@@ -109,6 +109,7 @@
 (setq company-minimum-prefix-length 2)
 (eval-after-load 'company
   '(progn
+     (diminish 'company-mode)
      (define-key company-active-map (kbd "RET") nil)
      (define-key company-active-map (kbd "<return>") nil)
      (define-key company-active-map (kbd "S-RET")
