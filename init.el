@@ -173,6 +173,7 @@
 (color-theme-approximate-on)
 (load-theme 'spolsky t)
 (setq evil-default-cursor '("grey" t))
+(setq x-stretch-cursor t)
 
 ; No scrollbars, no toolbar.
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
