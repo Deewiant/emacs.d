@@ -177,6 +177,9 @@
 (setq evil-default-cursor '("grey" t))
 (setq x-stretch-cursor t)
 
+(when window-system
+  (setq frame-title-format '(buffer-file-name "%f" ("%b"))))
+
 ; No scrollbars, no toolbar.
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
