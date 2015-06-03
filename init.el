@@ -162,13 +162,14 @@
                      'my-haskell-indentation-hide-guides))))
 
 ; Backup and auto-save into a global directory instead of next to the edited
-; file, don't clobber hard links when backing up, and delete old backups
-; silently.
+; file, don't clobber hard links when backing up, delete old backups silently,
+; and back up version controlled files as well.
 (make-directory "~/.emacs.d/auto-saves" t)
 (setq backup-by-copying t
       backup-directory-alist '(("." . "~/.emacs.d/backups/"))
       auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-saves/" t))
-      delete-old-versions t)
+      delete-old-versions t
+      vc-make-backup-files t)
 
 (color-theme-approximate-on)
 (load-theme 'spolsky t)
