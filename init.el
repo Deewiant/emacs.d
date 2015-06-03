@@ -15,7 +15,7 @@
          diminish
          dtrt-indent
          evil evil-commentary evil-jumper evil-matchit evil-snipe evil-surround
-         flycheck flycheck-haskell
+         flycheck flycheck-haskell flycheck-tip
          glsl-mode
          guide-key
          haskell-mode
@@ -91,7 +91,10 @@
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
+  '(progn
+     (add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)
+     (require 'flycheck-tip)
+     (flycheck-tip-use-timer 'verbose)))
 
 (setq sentence-end-double-space nil)
 
