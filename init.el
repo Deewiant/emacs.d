@@ -165,6 +165,9 @@
            (add-hook ',(intern (format "evil-%S-state-exit-hook" state))
                      'my-haskell-indentation-hide-guides))))
 
+(add-hook 'php-mode-hook
+          (lambda () (modify-syntax-entry ?$ "." php-mode-syntax-table)))
+
 ; Backup and auto-save into a global directory instead of next to the edited
 ; file, don't clobber hard links when backing up, delete old backups silently,
 ; and back up version controlled files as well.
