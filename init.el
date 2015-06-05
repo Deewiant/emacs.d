@@ -57,6 +57,7 @@
 (define-key evil-normal-state-map "Y" 'yank-to-eol)
 (define-key evil-normal-state-map (kbd "RET") 'toggle-column-enforcement)
 (define-key evil-insert-state-map (kbd "RET") 'comment-indent-new-line)
+(evil-declare-ignore-repeat 'toggle-column-enforcement)
 
 (column-number-mode)
 
