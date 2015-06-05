@@ -171,7 +171,9 @@
 
 (add-hook 'python-mode-hook 'jedi:setup)
 (add-hook 'python-mode-hook
-          (lambda () (add-to-list 'company-backends 'company-jedi)))
+          (lambda ()
+            (auto-complete-mode -1)
+            (add-to-list 'company-backends 'company-jedi)))
 
 ; Backup and auto-save into a global directory instead of next to the edited
 ; file, don't clobber hard links when backing up, delete old backups silently,
