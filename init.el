@@ -14,7 +14,7 @@
          company irony company-irony company-jedi
          diminish
          dtrt-indent
-         evil evil-commentary evil-jumper evil-matchit evil-snipe evil-surround
+         evil evil-commentary evil-jumper evil-snipe evil-surround
          flycheck flycheck-haskell flycheck-tip
          glsl-mode
          guide-key
@@ -36,7 +36,6 @@
 (setq evil-vsplit-window-right 1)
 (evil-commentary-mode)
 (evil-jumper-mode)
-(global-evil-matchit-mode 1)
 (setq evil-snipe-override-evil t)
 (global-evil-snipe-mode 1)
 (global-evil-surround-mode 1)
