@@ -11,7 +11,7 @@
 (let ((package-list
        '(color-theme-approximate
          column-enforce-mode
-         company irony company-irony
+         company irony company-irony company-jedi
          diminish
          dtrt-indent
          evil evil-commentary evil-jumper evil-matchit evil-snipe evil-surround
@@ -20,6 +20,7 @@
          guide-key
          haskell-mode
          helm helm-ag helm-dash helm-projectile
+         jedi
          linum-relative
          projectile
          smooth-scrolling
@@ -167,6 +168,10 @@
 
 (add-hook 'php-mode-hook
           (lambda () (modify-syntax-entry ?$ "." php-mode-syntax-table)))
+
+(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook
+          (lambda () (add-to-list 'company-backends 'company-jedi)))
 
 ; Backup and auto-save into a global directory instead of next to the edited
 ; file, don't clobber hard links when backing up, delete old backups silently,
