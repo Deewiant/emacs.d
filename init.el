@@ -179,7 +179,8 @@
 (let ((auto-save-dir (concat user-emacs-directory "auto-saves/")))
   (make-directory auto-save-dir t)
   (setq backup-by-copying t
-        backup-directory-alist `(("." . ,(concat user-emacs-directory "backups/")))
+        backup-directory-alist `(("." .
+                                  ,(concat user-emacs-directory "backups/")))
         auto-save-file-name-transforms '((".*" auto-save-dir t))
         delete-old-versions t
         vc-make-backup-files t))
