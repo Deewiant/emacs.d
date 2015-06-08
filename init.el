@@ -184,7 +184,7 @@
   (setq backup-by-copying t
         backup-directory-alist `(("." .
                                   ,(concat user-emacs-directory "backups/")))
-        auto-save-file-name-transforms '((".*" auto-save-dir t))
+        auto-save-file-name-transforms `((".*" ,auto-save-dir t))
         delete-old-versions t
         vc-make-backup-files t))
 
