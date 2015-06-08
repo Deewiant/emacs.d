@@ -22,6 +22,7 @@
          helm helm-ag helm-dash helm-projectile
          jedi
          linum-relative
+         popwin
          projectile
          smooth-scrolling
          sublime-themes)))
@@ -81,6 +82,10 @@
 (setq guide-key/guide-key-sequence t)
 (guide-key-mode 1)
 
+(require 'popwin)
+(popwin-mode 1)
+(push '("^\*[Hh]elm.+\*$" :regexp t :height 10) popwin:special-display-config)
+
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
@@ -96,7 +101,8 @@
   '(progn
      (add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)
      (require 'flycheck-tip)
-     (flycheck-tip-use-timer 'verbose)))
+     (flycheck-tip-use-timer 'verbose)
+     (push "*Flycheck errors*" popwin:special-display-config)))
 
 (setq sentence-end-double-space nil)
 
