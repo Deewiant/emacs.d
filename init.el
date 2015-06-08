@@ -19,7 +19,7 @@
          glsl-mode
          guide-key
          haskell-mode
-         helm helm-ag helm-dash helm-projectile
+         helm helm-ag helm-dash helm-flycheck helm-projectile
          jedi
          linum-relative
          popwin
@@ -102,7 +102,8 @@
      (add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)
      (require 'flycheck-tip)
      (flycheck-tip-use-timer 'verbose)
-     (push "*Flycheck errors*" popwin:special-display-config)))
+     (push "*Flycheck errors*" popwin:special-display-config)
+     (define-key flycheck-mode-map (kbd "C-c ! h") 'helm-flycheck)))
 
 (setq sentence-end-double-space nil)
 
