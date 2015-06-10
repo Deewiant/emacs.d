@@ -205,6 +205,7 @@
 
 (setq blink-cursor-blinks 1)
 (setq echo-keystrokes 0.1)
+(setq window-min-height 2)
 (setq x-stretch-cursor t)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
