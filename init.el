@@ -150,6 +150,10 @@
 (require 'haskell-indentation)
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(eval-after-load 'haskell
+  '(progn
+     (diminish 'haskell-indentation-mode)
+     (diminish 'interactive-haskell-mode)))
 (setq haskell-indentation-ifte-offset 3)
 (setq haskell-indentation-layout-offset 3)
 (setq haskell-indentation-left-offset 3)
