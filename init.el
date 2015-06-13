@@ -199,6 +199,9 @@
         delete-old-versions t
         vc-make-backup-files t))
 
+; The lock file directory is not settable so just disable locking.
+(setq create-lockfiles nil)
+
 (color-theme-approximate-on)
 (load-theme 'spolsky t)
 (setq evil-default-cursor '("grey" t))
