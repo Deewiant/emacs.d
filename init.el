@@ -100,6 +100,7 @@
 (eval-after-load 'flycheck
   '(progn
      (add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)
+     (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
      (require 'flycheck-tip)
      (flycheck-tip-use-timer 'verbose)
      (push "*Flycheck errors*" popwin:special-display-config)
