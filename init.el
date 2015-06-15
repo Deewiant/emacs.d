@@ -129,6 +129,12 @@
      (define-key company-active-map (kbd "S-<return>")
        'company-complete-selection)))
 
+(require 'generic-x)
+(customize-set-variable
+ 'generic-extras-enable-list
+ (append generic-default-modes generic-mswindows-modes generic-unix-modes
+         generic-other-modes))
+
 (defun my-irony-mode-enable ()
   (when (memq major-mode irony-supported-major-modes)
     (irony-mode 1)))
