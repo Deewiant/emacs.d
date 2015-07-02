@@ -52,7 +52,9 @@
   (if (and (boundp 'column-enforce-mode) column-enforce-mode)
       (column-enforce-mode -1)
     (column-enforce-mode t)))
-(defun yank-to-eol () (interactive) (evil-yank (point) (point-at-eol)))
+(defun yank-to-eol ()
+  (interactive)
+  (evil-yank-characters (point) (point-at-eol) evil-this-register))
 
 (define-key evil-normal-state-map "~" 'evil-invert-case)
 (define-key evil-normal-state-map "Y" 'yank-to-eol)
