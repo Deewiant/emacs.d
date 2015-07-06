@@ -56,6 +56,11 @@
 (defun yank-to-eol ()
   (interactive)
   (evil-yank-characters (point) (point-at-eol) evil-this-register))
+(defun my-insert-file-created ()
+  (interactive)
+  (let ((start (point)))
+    (insert "File created: " (shell-command-to-string "date --rfc-3339=seconds"))
+    (comment-region start (point))))
 
 (define-key evil-normal-state-map "~" 'evil-invert-case)
 (define-key evil-normal-state-map "Y" 'yank-to-eol)
