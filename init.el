@@ -16,10 +16,11 @@
          dtrt-indent
          evil evil-commentary evil-jumper evil-snipe evil-surround
          flycheck flycheck-haskell flycheck-tip
+         ggtags
          glsl-mode
          guide-key
          haskell-mode
-         helm helm-ag helm-dash helm-flycheck helm-projectile
+         helm helm-ag helm-dash helm-flycheck helm-gtags helm-projectile
          jedi
          linum-relative
          popwin
@@ -131,6 +132,28 @@
        'company-complete-selection)
      (define-key company-active-map (kbd "S-<return>")
        'company-complete-selection)))
+
+(defun my-helm-gtags-split-dwim ()
+  (interactive)
+  (evil-window-split)
+  (helm-gtags-dwim))
+
+(defun my-gtags-mode ()
+  (interactive)
+  (ggtags-mode)
+  (helm-gtags-mode))
+
+(eval-after-load 'ggtags
+  '(progn
+     (diminish 'ggtags-mode)
+     (diminish 'ggtags-navigation-mode)))
+(eval-after-load 'helm-gtags
+  '(progn
+     (diminish 'helm-gtags-mode)
+     (setq helm-gtags-auto-update t)
+     (define-key evil-normal-state-map (kbd "C-]") 'helm-gtags-dwim)
+     (define-key evil-normal-state-map (kbd "C-w C-]")
+       'my-helm-gtags-split-dwim)))
 
 (require 'generic-x)
 (customize-set-variable
