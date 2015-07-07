@@ -15,7 +15,7 @@
          diminish
          dtrt-indent
          evil evil-commentary evil-jumper evil-snipe evil-surround
-         flycheck flycheck-haskell flycheck-tip
+         flycheck flycheck-haskell
          ggtags
          glsl-mode
          guide-key
@@ -108,8 +108,7 @@
   '(progn
      (add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)
      (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
-     (require 'flycheck-tip)
-     (flycheck-tip-use-timer 'verbose)
+     (setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages)
      (push "*Flycheck errors*" popwin:special-display-config)
      (define-key flycheck-mode-map (kbd "C-c ! h") 'helm-flycheck)))
 
