@@ -173,6 +173,7 @@
 (defun my-irony-mode-enable ()
   (when (memq major-mode irony-supported-major-modes)
     (irony-mode 1)))
+(add-hook 'c-mode-common-hook (lambda () (abbrev-mode -1)))
 (add-hook 'c-mode-hook 'my-irony-mode-enable)
 (add-hook 'c++-mode-hook 'my-irony-mode-enable)
 (add-hook 'objc-mode-hook 'my-irony-mode-enable)
