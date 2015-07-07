@@ -123,6 +123,10 @@
 (c-add-style "deewiant" '("k&r" (c-basic-offset . 3)))
 (setq-default c-default-style "deewiant")
 
+(defun my-complete-simply ()
+  (interactive)
+  (company-begin-backend 'company-dabbrev))
+
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-dabbrev-downcase nil)
 (setq company-idle-delay 0)
@@ -130,6 +134,7 @@
 (eval-after-load 'company
   '(progn
      (diminish 'company-mode)
+     (define-key evil-insert-state-map (kbd "C-x C-n") 'my-complete-simply)
      (define-key company-active-map (kbd "RET") nil)
      (define-key company-active-map (kbd "<return>") nil)
      (define-key company-active-map (kbd "S-RET")
