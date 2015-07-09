@@ -110,7 +110,9 @@
      (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
      (setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages)
      (push "*Flycheck errors*" popwin:special-display-config)
-     (define-key flycheck-mode-map (kbd "C-c ! h") 'helm-flycheck)))
+     (define-key flycheck-mode-map (kbd "C-c ! h") 'helm-flycheck)
+     (define-key evil-normal-state-map "[f" 'flycheck-previous-error)
+     (define-key evil-normal-state-map "]f" 'flycheck-next-error)))
 
 (setq sentence-end-double-space nil)
 
