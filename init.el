@@ -34,6 +34,7 @@
 (require 'evil-snipe)
 (require 'evil-surround)
 (evil-mode 1)
+(setq evil-auto-balance-windows nil)
 (setq-default evil-symbol-word-search t)
 (setq evil-vsplit-window-right 1)
 (evil-commentary-mode)
