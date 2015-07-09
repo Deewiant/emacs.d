@@ -68,6 +68,39 @@
 (define-key evil-insert-state-map (kbd "RET") 'comment-indent-new-line)
 (evil-declare-ignore-repeat 'toggle-column-enforcement)
 
+; When closing split windows, return to the window we split from instead of some
+; seemingly unpredictable choice.
+(defvar my-window-parents)
+(setq my-window-parents nil)
+(defun my-save-window-next-parent-function (split &rest args)
+  (my-save-window-parent-function #'next-window split args))
+(defun my-save-window-prev-parent-function (split &rest args)
+  (my-save-window-parent-function #'previous-window split args))
+(defun my-save-window-parent-function (get-child split args)
+  ; Evil doesn't do "create split window and switch to it". It creates a split
+  ; window in the opposite direction and stays at the current window. Thus what
+  ; we consider the child is actually the original pre-split window.
+  (let ((child (selected-window))
+        (res (apply split args))
+        (parent (apply get-child nil)))
+    (setq my-window-parents (cons (cons parent child) my-window-parents))
+    res))
+(defun my-restore-window-parent-function (delete &rest args)
+  (let ((dead-child (selected-window)))
+    (apply delete args)
+    (dolist (x my-window-parents)
+      (pcase x
+        (`(,parent . ,child)
+         (if (window-live-p parent)
+             (when (eq child dead-child)
+               (progn
+                 (select-window parent)
+                 (setq my-window-parents (delq x my-window-parents))))
+           (setq my-window-parents (delq x my-window-parents))))))))
+(advice-add 'evil-window-split :around #'my-save-window-next-parent-function)
+(advice-add 'evil-window-vsplit :around #'my-save-window-prev-parent-function)
+(advice-add 'evil-window-delete :around #'my-restore-window-parent-function)
+
 (column-number-mode)
 
 (require 'linum-relative)
