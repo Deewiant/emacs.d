@@ -15,6 +15,7 @@
          diminish
          dtrt-indent
          evil evil-commentary evil-jumper evil-snipe evil-surround
+         eyebrowse
          flycheck flycheck-haskell
          ggtags
          glsl-mode
@@ -101,6 +102,12 @@
 (advice-add 'evil-window-vsplit :around #'my-save-window-prev-parent-function)
 (advice-add 'evil-window-delete :around #'my-restore-window-parent-function)
 
+(eyebrowse-mode t)
+(setq eyebrowse-wrap-around t)
+(setq eyebrowse-new-workspace t)
+(define-key evil-motion-state-map (kbd "gt") 'eyebrowse-next-window-config)
+(define-key evil-motion-state-map (kbd "gT") 'eyebrowse-prev-window-config)
+
 (column-number-mode)
 
 (require 'linum-relative)
@@ -134,6 +141,7 @@
 (require 'diminish)
 (diminish 'evil-commentary-mode)
 (diminish 'evil-snipe-mode)
+(diminish 'eyebrowse-mode)
 (diminish 'guide-key-mode)
 (diminish 'undo-tree-mode)
 
