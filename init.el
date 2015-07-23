@@ -161,6 +161,8 @@
 (setq-default indent-tabs-mode nil)
 (setq standard-indent 3)
 
+(setq backward-delete-char-untabify-method nil)
+
 (setq-default fill-column 80)
 
 (c-add-style "deewiant" '("k&r" (c-basic-offset . 3)))
