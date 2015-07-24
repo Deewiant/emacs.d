@@ -19,7 +19,6 @@
          flycheck flycheck-haskell
          ggtags
          glsl-mode
-         guide-key
          haskell-mode
          helm helm-ag helm-dash helm-flycheck helm-gtags helm-projectile
          jedi
@@ -27,7 +26,8 @@
          popwin
          projectile
          smooth-scrolling
-         sublime-themes)))
+         sublime-themes
+         which-key)))
   (dolist (p package-list)
     (if (package-installed-p p) (package-activate p) (package-install p))))
 
@@ -126,9 +126,8 @@
 (require 'dtrt-indent)
 (dtrt-indent-mode 1)
 
-(require 'guide-key)
-(setq guide-key/guide-key-sequence t)
-(guide-key-mode 1)
+(which-key-mode)
+(which-key-setup-side-window-right-bottom)
 
 (require 'popwin)
 (popwin-mode 1)
@@ -142,8 +141,8 @@
 (diminish 'evil-commentary-mode)
 (diminish 'evil-snipe-mode)
 (diminish 'eyebrowse-mode)
-(diminish 'guide-key-mode)
 (diminish 'undo-tree-mode)
+(diminish 'which-key-mode)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (eval-after-load 'flycheck
