@@ -1,4 +1,4 @@
-(add-to-list 'load-path "~/.emacs.d/load/")
+(add-to-list 'load-path (concat user-emacs-directory "load/"))
 
 (require 'package)
 (setq package-archives
