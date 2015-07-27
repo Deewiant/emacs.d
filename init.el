@@ -8,6 +8,9 @@
 (package-initialize t)
 (unless package-archive-contents (package-refresh-contents))
 
+; We already initialized above, and will activate below.
+(setq package-enable-at-startup nil)
+
 (let ((package-list
        '(color-theme-approximate
          column-enforce-mode
