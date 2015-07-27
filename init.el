@@ -21,6 +21,7 @@
          glsl-mode
          haskell-mode
          helm helm-ag helm-dash helm-flycheck helm-gtags helm-projectile
+         highlight-escape-sequences
          jedi
          linum-relative
          popwin
@@ -119,6 +120,8 @@
 (customize-set-variable 'linum-format linum-format)
 
 (show-paren-mode 1)
+
+(hes-mode)
 
 (require 'smooth-scrolling)
 (setq smooth-scroll-margin 5)
