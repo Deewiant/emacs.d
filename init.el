@@ -121,6 +121,15 @@
 
 (show-paren-mode 1)
 
+(require 'highlight-escape-sequences)
+(defconst my-hes-php-re
+  (rx (submatch
+       (and ?\\ (submatch
+                 (or (repeat 1 3 (in "0-7"))
+                     (and ?x (repeat 2 hex-digit))
+                     (any "\"\'\\efnrtv$"))))))
+  "Regexp to match PHP string escape sequences.")
+(setq hes-mode-alist (cons `(php-mode . ,my-hes-php-re) hes-mode-alist))
 (hes-mode)
 
 (require 'smooth-scrolling)
