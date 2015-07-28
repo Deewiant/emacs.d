@@ -3,8 +3,8 @@
 (require 'package)
 (setq package-archives
       '(("gnu" . "https://elpa.gnu.org/packages/")
-	("melpa-stable" . "http://stable.melpa.org/packages/")
-	("melpa-unstable" . "http://unstable.melpa.org/packages/")))
+        ("melpa-stable" . "http://stable.melpa.org/packages/")
+        ("melpa-unstable" . "http://unstable.melpa.org/packages/")))
 (package-initialize t)
 (unless package-archive-contents (package-refresh-contents))
 
