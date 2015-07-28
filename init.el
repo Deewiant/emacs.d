@@ -5,10 +5,10 @@
       '(("gnu" . "https://elpa.gnu.org/packages/")
         ("melpa-stable" . "http://stable.melpa.org/packages/")
         ("melpa-unstable" . "http://unstable.melpa.org/packages/")))
-(package-initialize t)
+(package-initialize)
 (unless package-archive-contents (package-refresh-contents))
 
-; We already initialized above, and will activate below.
+; We already initialized above.
 (setq package-enable-at-startup nil)
 
 (let ((package-list
@@ -33,7 +33,7 @@
          sublime-themes
          which-key)))
   (dolist (p package-list)
-    (if (package-installed-p p) (package-activate p) (package-install p))))
+    (unless (package-installed-p p) (package-install p))))
 
 (require 'evil)
 (require 'evil-snipe)
