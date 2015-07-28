@@ -295,6 +295,7 @@
 
 (my-use-package irony
   :ensure t
+  :commands irony-mode
   :init
   (defun my-irony-mode-enable ()
     ; This is basically irony-supported-major-modes but hard-coded because we
