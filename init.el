@@ -316,6 +316,7 @@
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
   (my-use-package company-irony
     :ensure t
+    :commands company-irony company-irony-setup-begin-commands
     :config
     (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
     (add-to-list 'company-backends 'company-irony)))
