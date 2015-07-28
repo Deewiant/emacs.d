@@ -281,7 +281,7 @@
 
 (add-hook 'php-mode-hook
           (lambda () (modify-syntax-entry ?$ "." php-mode-syntax-table)))
-(add-hook 'php-mode-hook (lambda () (my-gtags-mode)))
+(add-hook 'php-mode-hook 'my-gtags-mode)
 
 (add-hook 'python-mode-hook 'jedi:setup)
 (add-hook 'python-mode-hook
