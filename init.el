@@ -11,6 +11,8 @@
 ; We already initialized above.
 (setq package-enable-at-startup nil)
 
+(defvar my-used-packages (make-hash-table))
+
 (let ((package-list
        '(color-theme-approximate
          column-enforce-mode
@@ -33,7 +35,10 @@
          sublime-themes
          which-key)))
   (dolist (p package-list)
-    (unless (package-installed-p p) (package-install p))))
+    (unless (package-installed-p p) (package-install p))
+    (puthash p nil my-used-packages)))
+
+(require 'cl-lib)
 
 (require 'evil)
 (require 'evil-snipe)
@@ -327,3 +332,56 @@
 (let ((custom-dir (concat user-emacs-directory "custom")))
   (make-directory custom-dir t)
   (mapc 'load (directory-files custom-dir t ".*\.el$" t)))
+
+(defun my-get-recursive-deps-of-package (pkg)
+  (let* ((pkg-arch (assq pkg package-alist))
+         (reqs (when pkg-arch (package-desc-reqs (cadr pkg-arch)))))
+    (dolist (req reqs)
+      (let ((reqs2 (my-get-recursive-deps-of-package (car req))))
+        (when reqs2 (setq reqs (append reqs reqs2)))))
+    reqs))
+
+(defun my-get-all-package-revdeps ()
+  (let ((revdeps (make-hash-table :size 512)))
+    (dolist (pkg-info package-alist)
+      (let* ((pkg (car pkg-info))
+             (deps (my-get-recursive-deps-of-package pkg)))
+        (dolist (dep-info deps)
+          (let* ((dep (car dep-info))
+                 (old-revdeps (gethash dep revdeps))
+                 (new-revdeps (cons pkg old-revdeps)))
+            (puthash dep (delete-dups new-revdeps) revdeps)))))
+    revdeps))
+
+(defun my-package-is-orphan (pkg revdeps)
+  (when (eq (gethash pkg my-used-packages 'my-missing) 'my-missing)
+    (let ((users (gethash pkg revdeps 'my-missing)))
+      (or (eq users 'my-missing)
+          (cl-reduce (lambda (x y) (and x y))
+                     (mapcar (lambda (p) (my-package-is-orphan p revdeps))
+                             users)
+                     :initial-value t)))))
+
+(defun my-get-unused-packages ()
+  (let ((revdeps (my-get-all-package-revdeps))
+        (implicits (cl-remove-if-not
+                    (lambda (p)
+                      (eq (gethash (car p) my-used-packages 'my-missing)
+                          'my-missing))
+                    package-alist))
+        (result '()))
+    (dolist (imp implicits)
+      (when (my-package-is-orphan (car imp) revdeps)
+        (push imp result)))
+    (delete-dups result)))
+
+(let* ((orphans (my-get-unused-packages))
+       (orphans-len (length orphans)))
+  (when (and orphans (yes-or-no-p (format "Delete %d orphans? %s"
+                                          orphans-len (mapcar 'car orphans))))
+    (message "Deleting %d orphan packages: %s" orphans-len orphans)
+    (let ((deleted-count 0))
+      (dolist (orphan orphans)
+        (setq deleted-count (1+ deleted-count))
+        (message "  [%d/%d] %s" deleted-count orphans-len (car orphan))
+        (package-delete (cadr orphan))))))
