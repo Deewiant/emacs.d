@@ -1,37 +1,37 @@
 (add-to-list 'load-path (concat user-emacs-directory "load/"))
 
-(require 'package)
-(setq package-archives
-      '(("gnu" . "https://elpa.gnu.org/packages/")
-        ("melpa-stable" . "http://stable.melpa.org/packages/")
-        ("melpa-unstable" . "http://unstable.melpa.org/packages/")))
-(package-initialize)
+(eval-and-compile
+  (require 'package)
+  (setq package-archives
+        '(("gnu" . "https://elpa.gnu.org/packages/")
+          ("melpa-stable" . "http://stable.melpa.org/packages/")
+          ("melpa-unstable" . "http://unstable.melpa.org/packages/")))
+  (package-initialize)
 
-; We already initialized above.
-(setq package-enable-at-startup nil)
+  ; We already initialized above.
+  (setq package-enable-at-startup nil)
 
-(eval-when-compile
-  (defvar my-used-packages (make-hash-table)))
+  (defvar my-used-packages (make-hash-table))
 
-; Most things are installed by use-package, this is only the pre-requisites of
-; use-package itself, including optional features we use.
-(let ((package-list '(diminish use-package)))
-(dolist (p package-list)
-    (unless (package-installed-p p)
-    (unless (assq p package-archive-contents) (package-refresh-contents))
-    (package-install p))
-    (puthash p nil my-used-packages)))
+  ; Most things are installed by use-package, this is only the pre-requisites of
+  ; use-package itself, including optional features we use.
+  (let ((package-list '(diminish use-package)))
+    (dolist (p package-list)
+      (unless (package-installed-p p)
+        (unless (assq p package-archive-contents) (package-refresh-contents))
+        (package-install p))
+      (puthash p nil my-used-packages)))
 
-(defvar use-package-verbose t)
-(require 'cl-lib)
-(require 'use-package)
+  (defvar use-package-verbose t)
+  (require 'cl-lib)
+  (require 'use-package)
 
-; Technically we only care about packages that have an :ensure setting, but it
-; doesn't matter to remember all of them.
-(defmacro my-use-package (name &rest args)
-  "Like use-package, but remembers the used package in my-used-packages."
-  (puthash name nil my-used-packages)
-  (append `(use-package ,name) args))
+  ; Technically we only care about packages that have an :ensure setting, but it
+  ; doesn't matter to remember all of them.
+  (defmacro my-use-package (name &rest args)
+    "Like use-package, but remembers the used package in my-used-packages."
+    (puthash name nil my-used-packages)
+    (append `(use-package ,name) args)))
 
 (my-use-package evil
   :ensure t
@@ -477,6 +477,14 @@
       (when (my-package-is-orphan (car imp) revdeps)
         (push imp result)))
     (delete-dups result)))
+
+; Populate my-used-packages at runtime as well.
+(cl-macrolet
+    ((my-populate-used-packages ()
+       (cons 'progn
+             (mapcar (lambda (pkg) `(puthash ',pkg nil my-used-packages))
+                     (hash-table-keys my-used-packages)))))
+  (my-populate-used-packages))
 
 (let* ((orphans (my-get-unused-packages))
        (orphans-len (length orphans)))
