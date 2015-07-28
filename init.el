@@ -322,7 +322,8 @@
     (add-to-list 'company-backends 'company-irony)))
 
 (my-use-package glsl-mode
-  :ensure t)
+  :ensure t
+  :commands glsl-mode)
 
 (my-use-package haskell-mode
   :ensure t
