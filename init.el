@@ -69,7 +69,8 @@
 (defun my-insert-file-created ()
   (interactive)
   (let ((start (point)))
-    (insert "File created: " (shell-command-to-string "date --rfc-3339=seconds"))
+    (insert "File created: "
+            (shell-command-to-string "date --rfc-3339=seconds"))
     (comment-region start (point))))
 
 (define-key evil-normal-state-map "~" 'evil-invert-case)
