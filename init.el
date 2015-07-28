@@ -279,6 +279,7 @@
   (my-use-package helm-gtags
     :ensure t
     :diminish helm-gtags-mode
+    :commands helm-gtags-mode
     :config
     (setq helm-gtags-auto-update t)
     (define-key evil-normal-state-map (kbd "C-]") 'helm-gtags-dwim)
