@@ -370,6 +370,7 @@
 
 (my-use-package php-mode
   :ensure t
+  :commands php-mode
   :config
   (add-hook 'php-mode-hook
             (lambda () (modify-syntax-entry ?$ "." php-mode-syntax-table)))
