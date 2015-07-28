@@ -199,7 +199,8 @@
 (my-use-package helm-ag
   :ensure t)
 (my-use-package helm-dash
-  :ensure t)
+  :ensure t
+  :commands helm-dash helm-dash-at-point)
 
 (my-use-package projectile
   :ensure t
