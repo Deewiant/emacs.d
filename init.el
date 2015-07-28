@@ -116,6 +116,7 @@
 
 (my-use-package column-enforce-mode
   :ensure t
+  :commands column-enforce-mode
   :init
   (defun toggle-column-enforcement ()
     (interactive)
