@@ -269,6 +269,7 @@
 (my-use-package ggtags
   :ensure t
   :diminish ggtags-mode ggtags-navigation-mode
+  :commands ggtags-mode
   :init
   (defun my-gtags-mode ()
     (interactive)
