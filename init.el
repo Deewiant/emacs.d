@@ -327,6 +327,7 @@
 
 (my-use-package haskell-mode
   :ensure t
+  :commands haskell-mode
   :config
   (my-use-package haskell-interactive-mode
     :config
