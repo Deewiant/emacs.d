@@ -306,7 +306,7 @@
 
 (color-theme-approximate-on)
 (load-theme 'spolsky t)
-(setq evil-default-cursor '("grey" t))
+(set-face-attribute 'cursor nil :background "grey")
 
 (setq blink-cursor-blinks 1)
 (setq echo-keystrokes 0.1)
