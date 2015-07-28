@@ -378,6 +378,7 @@
 
 (my-use-package jedi
   :ensure t
+  :commands jedi:setup
   :init
   (defun my-jedi-setup ()
     (interactive)
