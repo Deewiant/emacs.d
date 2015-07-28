@@ -222,6 +222,7 @@
     (setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
   (my-use-package helm-flycheck
     :ensure t
+    :commands helm-flycheck
     :init
     (define-key flycheck-mode-map (kbd "C-c ! h") 'helm-flycheck))
   (global-flycheck-mode)
