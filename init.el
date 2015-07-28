@@ -204,6 +204,7 @@
 
 (my-use-package projectile
   :ensure t
+  :bind-keymap ("C-c p" . projectile-command-map)
   :config
   (my-use-package helm-projectile
     :ensure t
