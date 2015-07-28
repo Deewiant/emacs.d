@@ -19,7 +19,7 @@
          dtrt-indent
          evil evil-commentary evil-jumper evil-snipe evil-surround
          eyebrowse
-         flycheck flycheck-haskell
+         flycheck flycheck-haskell flycheck-pos-tip
          ggtags
          glsl-mode
          haskell-mode
