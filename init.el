@@ -191,7 +191,7 @@
   :ensure t
   :config
   (popwin-mode 1)
-  (push '("^\*[Hh]elm.+\*$" :regexp t :height 10)
+  (push '("^\\*[Hh]elm.+\\*$" :regexp t :height 10)
         popwin:special-display-config))
 
 (my-use-package helm
