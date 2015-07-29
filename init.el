@@ -198,7 +198,7 @@
   :defer t
   :bind ("C-x b" . helm-mini)
   :config
-  (push '("^\\*[Hh]elm.+\\*$" :regexp t :height 10)
+  (push '("^\\*[Hh]elm.+\\*$" :regexp t :height 15)
         popwin:special-display-config))
 (my-use-package helm-ag
   :ensure t
