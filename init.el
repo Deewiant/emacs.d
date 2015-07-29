@@ -190,15 +190,16 @@
 (my-use-package popwin
   :ensure t
   :config
-  (popwin-mode 1)
-  (push '("^\\*[Hh]elm.+\\*$" :regexp t :height 10)
-        popwin:special-display-config))
+  (popwin-mode 1))
 
 (my-use-package helm
   :ensure t
   ; It knows how to load itself
   :defer t
-  :bind ("C-x b" . helm-mini))
+  :bind ("C-x b" . helm-mini)
+  :config
+  (push '("^\\*[Hh]elm.+\\*$" :regexp t :height 10)
+        popwin:special-display-config))
 (my-use-package helm-ag
   :ensure t
   ; It knows how to load itself
