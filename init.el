@@ -195,9 +195,13 @@
         popwin:special-display-config))
 
 (my-use-package helm
-  :ensure t)
+  :ensure t
+  ; It knows how to load itself
+  :defer t)
 (my-use-package helm-ag
-  :ensure t)
+  :ensure t
+  ; It knows how to load itself
+  :defer t)
 (my-use-package helm-dash
   :ensure t
   :commands helm-dash helm-dash-at-point)
