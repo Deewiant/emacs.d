@@ -197,7 +197,8 @@
 (my-use-package helm
   :ensure t
   ; It knows how to load itself
-  :defer t)
+  :defer t
+  :bind ("C-x b" . helm-mini))
 (my-use-package helm-ag
   :ensure t
   ; It knows how to load itself
