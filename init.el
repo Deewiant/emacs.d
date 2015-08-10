@@ -261,6 +261,7 @@
   (setq company-dabbrev-downcase nil)
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 2)
+  (setq company-show-numbers t)
   (define-key evil-insert-state-map (kbd "C-x C-n") 'my-complete-simply)
   (define-key company-active-map (kbd "RET") nil)
   (define-key company-active-map (kbd "<return>") nil)
