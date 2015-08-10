@@ -263,11 +263,8 @@
   (setq company-minimum-prefix-length 2)
   (setq company-show-numbers t)
   (define-key evil-insert-state-map (kbd "C-x C-n") 'my-complete-simply)
-  (define-key company-active-map (kbd "RET") nil)
-  (define-key company-active-map (kbd "<return>") nil)
-  (define-key company-active-map (kbd "S-RET") 'company-complete-selection)
-  (define-key company-active-map (kbd "S-<return>")
-    'company-complete-selection)
+  (define-key company-active-map (kbd "S-RET") 'comment-indent-new-line)
+  (define-key company-active-map (kbd "S-<return>") 'comment-indent-new-line)
   (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
   (define-key company-active-map [tab] 'company-complete-common-or-cycle)
   (my-use-package company-quickhelp
