@@ -398,6 +398,10 @@
     :config
     (add-to-list 'company-backends 'company-jedi)))
 
+(my-use-package puppet-mode
+   :ensure t
+   :commands puppet-mode)
+
 ; Backup and auto-save into a global directory instead of next to the edited
 ; file, don't clobber hard links when backing up, delete old backups silently,
 ; and back up version controlled files as well.
