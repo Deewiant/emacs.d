@@ -266,7 +266,11 @@
   (define-key company-active-map (kbd "<return>") nil)
   (define-key company-active-map (kbd "S-RET") 'company-complete-selection)
   (define-key company-active-map (kbd "S-<return>")
-    'company-complete-selection))
+    'company-complete-selection)
+  (my-use-package company-quickhelp
+    :ensure t
+    :config
+    (company-quickhelp-mode 1)))
 
 (defun my-helm-gtags-split-dwim ()
   (interactive)
