@@ -268,6 +268,8 @@
   (define-key company-active-map (kbd "S-RET") 'company-complete-selection)
   (define-key company-active-map (kbd "S-<return>")
     'company-complete-selection)
+  (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
+  (define-key company-active-map [tab] 'company-complete-common-or-cycle)
   (my-use-package company-quickhelp
     :ensure t
     :config
