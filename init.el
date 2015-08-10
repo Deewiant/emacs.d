@@ -417,11 +417,10 @@
   :ensure t
   :config
   (color-theme-approximate-on))
-(my-use-package sublime-themes
+(my-use-package material-theme
   :ensure t
   :config
-  (load-theme 'spolsky t)
-  (set-face-attribute 'cursor nil :background "grey"))
+  (load-theme 'material t))
 
 (setq blink-cursor-blinks 1)
 (setq echo-keystrokes 0.1)
