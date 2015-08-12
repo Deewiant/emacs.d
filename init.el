@@ -286,12 +286,28 @@
     :diminish helm-gtags-mode
     :commands helm-gtags-mode
     :config
+
+    ; A copy of helm-gtags-dwim but falling back to helm-gtags-select instead of
+    ; helm-gtags-find-tag. We can't easily advise it or helm-gtags-find-tag or
+    ; anything like that because helm-gtags-find-tag is called interactively, so
+    ; just copy it.
+    (defun my-helm-gtags-dwim ()
+      (interactive)
+      (let ((line (helm-current-line-contents)))
+        (if (string-match helm-gtags--include-regexp line)
+            (let ((helm-gtags-use-input-at-cursor t))
+              (helm-gtags-find-files (match-string-no-properties 1 line)))
+          (if (and (buffer-file-name) (thing-at-point 'symbol))
+              (helm-gtags-find-tag-from-here)
+            (helm-gtags-select)))))
+
     (defun my-helm-gtags-split-dwim ()
       (interactive)
       (evil-window-split)
-      (helm-gtags-dwim))
+      (my-helm-gtags-dwim))
+
     (setq helm-gtags-auto-update t)
-    (define-key evil-normal-state-map (kbd "C-]") 'helm-gtags-dwim)
+    (define-key evil-normal-state-map (kbd "C-]") 'my-helm-gtags-dwim)
     (define-key evil-normal-state-map (kbd "C-w C-]")
       'my-helm-gtags-split-dwim)))
 
