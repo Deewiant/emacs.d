@@ -13,14 +13,13 @@
 
   (defvar my-used-packages (make-hash-table))
 
-  ; Most things are installed by use-package, this is only the pre-requisites of
-  ; use-package itself, including optional features we use.
-  (let ((package-list '(diminish use-package)))
-    (dolist (p package-list)
-      (unless (package-installed-p p)
-        (unless (assq p package-archive-contents) (package-refresh-contents))
-        (package-install p))
-      (puthash p nil my-used-packages)))
+  ; Most things are installed by use-package, so that's all we need to get
+  ; manually.
+  (let ((p 'use-package))
+    (unless (package-installed-p p)
+      (unless (assq p package-archive-contents) (package-refresh-contents))
+      (package-install p))
+    (puthash p nil my-used-packages))
 
   (defvar use-package-verbose t)
   (require 'cl-lib)
