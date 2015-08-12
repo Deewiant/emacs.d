@@ -272,11 +272,6 @@
     :config
     (company-quickhelp-mode 1)))
 
-(defun my-helm-gtags-split-dwim ()
-  (interactive)
-  (evil-window-split)
-  (helm-gtags-dwim))
-
 (my-use-package ggtags
   :ensure t
   :diminish ggtags-mode ggtags-navigation-mode
@@ -292,6 +287,10 @@
     :diminish helm-gtags-mode
     :commands helm-gtags-mode
     :config
+    (defun my-helm-gtags-split-dwim ()
+      (interactive)
+      (evil-window-split)
+      (helm-gtags-dwim))
     (setq helm-gtags-auto-update t)
     (define-key evil-normal-state-map (kbd "C-]") 'helm-gtags-dwim)
     (define-key evil-normal-state-map (kbd "C-w C-]")
