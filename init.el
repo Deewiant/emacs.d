@@ -363,9 +363,11 @@
   (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
   (my-use-package haskell-process)
   (my-use-package haskell-indentation
-    :diminish haskell-indentation-mode
     :config
-    (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+    (add-hook 'haskell-mode-hook
+      (lambda ()
+        (turn-on-haskell-indentation)
+        (diminish 'haskell-indentation-mode)))
     (setq haskell-indentation-ifte-offset 3)
     (setq haskell-indentation-layout-offset 3)
     (setq haskell-indentation-left-offset 3)
