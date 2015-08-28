@@ -366,7 +366,7 @@
     :config
     (add-hook 'haskell-mode-hook
       (lambda ()
-        (turn-on-haskell-indentation)
+        (haskell-indentation-mode)
         (diminish 'haskell-indentation-mode)))
     (setq haskell-indentation-ifte-offset 3)
     (setq haskell-indentation-layout-offset 3)
