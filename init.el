@@ -179,6 +179,12 @@
   :config
   (dtrt-indent-mode 1))
 
+(my-use-package ws-butler
+  :ensure t
+  :diminish ws-butler-mode
+  :config
+  (ws-butler-global-mode))
+
 (my-use-package which-key
   :ensure t
   :diminish which-key-mode
