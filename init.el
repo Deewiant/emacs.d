@@ -231,6 +231,15 @@
   :ensure t
   :commands helm-dash helm-dash-at-point)
 
+(my-use-package wgrep
+  :ensure t
+  :commands wgrep-change-to-wgrep-mode
+  :config
+  (my-use-package wgrep-ag
+    :ensure t)
+  (my-use-package wgrep-helm
+    :ensure t))
+
 (my-use-package projectile
   :ensure t
   :bind-keymap ("C-c p" . projectile-command-map)
