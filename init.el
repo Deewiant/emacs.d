@@ -209,6 +209,11 @@
   :config
   (popwin-mode 1))
 
+(my-use-package cycbuf
+  :ensure t
+  :config
+  (cycbuf-init))
+
 (my-use-package helm
   :ensure t
   ; It knows how to load itself
