@@ -431,6 +431,9 @@
   :ensure t
   :commands php-mode
   :config
+  ; Don't override tab width to 4, please.
+  (setq php-mode-coding-style 'default)
+
   (add-hook 'php-mode-hook
             (lambda () (modify-syntax-entry ?$ "." php-mode-syntax-table)))
   (add-hook 'php-mode-hook 'my-gtags-mode))
