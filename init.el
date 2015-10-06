@@ -195,6 +195,12 @@
   :ensure t
   :diminish ws-butler-mode
   :config
+  (setq orig-ws-butler-clean-region (symbol-function #'ws-butler-clean-region))
+  (defun ws-butler-clean-region (beg end)
+    "Delete trailing blanks in region BEG END. Don't touch indentation."
+    (interactive "*r")
+    (let ((indent-tabs-mode t))
+      (apply orig-ws-butler-clean-region beg end '())))
   (ws-butler-global-mode))
 
 (my-use-package which-key
