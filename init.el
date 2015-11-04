@@ -402,32 +402,12 @@
   (my-use-package haskell-process)
   (my-use-package haskell-indentation
     :config
-    (add-hook 'haskell-mode-hook
-      (lambda ()
-        (haskell-indentation-mode)
-        (diminish 'haskell-indentation-mode)))
     (setq haskell-indentation-ifte-offset 3)
     (setq haskell-indentation-layout-offset 3)
     (setq haskell-indentation-left-offset 3)
     (setq haskell-indentation-starter-offset 3)
     (setq haskell-indentation-where-pre-offset 1)
-    (setq haskell-indentation-where-post-offset 2)
-
-    ; Show the Haskell indentation guides only in the insert and emacs states.
-    (defun my-haskell-indentation-show-guides ()
-      (when (eq major-mode 'haskell-mode)
-        (haskell-indentation-enable-show-indentations)))
-    (defun my-haskell-indentation-hide-guides ()
-      (when (eq major-mode 'haskell-mode)
-        (haskell-indentation-disable-show-indentations)))
-    (add-hook 'evil-normal-state-entry-hook
-              'my-haskell-indentation-hide-guides)
-    (dolist (state '(insert emacs))
-      (eval `(progn
-               (add-hook ',(intern (format "evil-%S-state-entry-hook" state))
-                         'my-haskell-indentation-show-guides)
-               (add-hook ',(intern (format "evil-%S-state-exit-hook" state))
-                         'my-haskell-indentation-hide-guides)))))
+    (setq haskell-indentation-where-post-offset 2))
   (my-use-package flycheck-haskell
     :ensure t
     :config
