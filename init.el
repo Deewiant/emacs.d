@@ -146,6 +146,7 @@
 
 (my-use-package linum-relative
   :ensure t
+  :diminish linum-relative-mode
   :config
   ; Update line numbers only after a delay. Rewrite linum-schedule to use a
   ; proper timer instead of a 0-delay one and linum-after-scroll to not do an
@@ -161,6 +162,7 @@
 
   (setq linum-relative-current-symbol "")
   (global-linum-mode 1)
+  (linum-relative-mode 1)
 
   ; Some themes see fit to override linum-format, breaking linum-relative, so
   ; make sure they fail.
