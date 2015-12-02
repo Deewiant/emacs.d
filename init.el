@@ -464,10 +464,13 @@
   :ensure t
   :config
   (color-theme-approximate-on))
-(my-use-package material-theme
+(my-use-package solarized-theme
   :ensure t
   :config
-  (load-theme 'material t))
+  (setq solarized-distinct-fringe-background t)
+  (setq solarized-emphasize-indicators nil)
+  (setq x-underline-at-descent-line t)
+  (load-theme 'solarized-light t))
 
 (setq blink-cursor-blinks 1)
 (setq echo-keystrokes 0.1)
