@@ -464,14 +464,8 @@
   :ensure t
   :config
   (color-theme-approximate-on))
-(my-use-package solarized-theme
-  :ensure t
-  :config
-  (setq solarized-distinct-fringe-background t)
-  (setq solarized-emphasize-indicators nil)
-  (setq x-underline-at-descent-line t)
-  (load-theme 'solarized-light t))
 
+(set-background-color "#d8d8d8")
 (setq blink-cursor-blinks 1)
 (setq echo-keystrokes 0.1)
 (setq window-min-height 2)
