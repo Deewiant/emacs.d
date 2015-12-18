@@ -36,6 +36,12 @@
   :ensure t
   :diminish undo-tree-mode
   :config
+  ; Wants to be enabled before evil-mode itself.
+  (my-use-package evil-leader
+    :ensure t
+    :config
+    (global-evil-leader-mode))
+
   (evil-mode 1)
 
   (my-use-package evil-commentary
@@ -108,6 +114,10 @@
   (defun yank-to-eol ()
     (interactive)
     (evil-yank-characters (point) (point-at-eol) evil-this-register))
+
+  ; I don't use | normally and would rather have \ as a leader than dedicate it
+  ; to this.
+  (define-key evil-normal-state-map "|" 'evil-execute-in-emacs-state)
 
   (define-key evil-normal-state-map "~" 'evil-invert-case)
   (define-key evil-normal-state-map "Y" 'yank-to-eol)
