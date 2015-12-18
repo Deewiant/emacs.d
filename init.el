@@ -426,20 +426,18 @@
             (lambda () (modify-syntax-entry ?$ "." php-mode-syntax-table)))
   (add-hook 'php-mode-hook 'my-gtags-mode))
 
-(my-use-package jedi
+(my-use-package anaconda-mode
   :ensure t
-  :commands jedi:setup
+  :commands anaconda-mode
+  :diminish anaconda-mode
   :init
-  (defun my-jedi-setup ()
-    (interactive)
-    (jedi:setup)
-    (auto-complete-mode -1))
-  (add-hook 'python-mode-hook 'my-jedi-setup)
+  (add-hook 'python-mode-hook 'anaconda-mode)
+  (add-hook 'python-mode-hook 'eldoc-mode)
   :config
-  (my-use-package company-jedi
+  (my-use-package company-anaconda
     :ensure t
     :config
-    (add-to-list 'company-backends 'company-jedi)))
+    (add-to-list 'company-backends 'company-anaconda)))
 
 (my-use-package puppet-mode
    :ensure t
