@@ -449,6 +449,7 @@
     "fa" 'anaconda-mode-find-assignments
     "fd" 'anaconda-mode-find-definitions
     "fr" 'anaconda-mode-find-references)
+  (evil-define-key 'normal anaconda-mode-view-mode-map "q" 'quit-window)
   (my-use-package company-anaconda
     :ensure t
     :config
