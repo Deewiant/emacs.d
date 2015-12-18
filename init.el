@@ -455,6 +455,10 @@
     :config
     (add-to-list 'company-backends 'company-anaconda)))
 
+(my-use-package pyvenv
+  :ensure t
+  :commands pyvenv-activate pyvenv-workon)
+
 (my-use-package puppet-mode
    :ensure t
    :commands puppet-mode)
