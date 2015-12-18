@@ -444,6 +444,11 @@
   (add-hook 'python-mode-hook 'anaconda-mode)
   (add-hook 'python-mode-hook 'eldoc-mode)
   :config
+  (evil-leader/set-key-for-mode 'python-mode
+    "d" 'anaconda-mode-show-doc
+    "fa" 'anaconda-mode-find-assignments
+    "fd" 'anaconda-mode-find-definitions
+    "fr" 'anaconda-mode-find-references)
   (my-use-package company-anaconda
     :ensure t
     :config
