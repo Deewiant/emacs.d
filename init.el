@@ -460,8 +460,8 @@
   :commands pyvenv-activate pyvenv-workon)
 
 (my-use-package puppet-mode
-   :ensure t
-   :commands puppet-mode)
+  :ensure t
+  :commands puppet-mode)
 
 ; Backup and auto-save into a global directory instead of next to the edited
 ; file, don't clobber hard links when backing up, delete old backups silently,
@@ -476,16 +476,16 @@
         vc-make-backup-files t))
 
 (my-use-package web-mode
-   :ensure t
-   :commands web-mode
-   :init
-   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-   (add-to-list 'auto-mode-alist '("\\.jinja\\'" . web-mode))
-   :config
-   (setq web-mode-enable-auto-pairing nil)
-   (set-face-attribute 'web-mode-html-tag-face nil :foreground "medium blue")
-   (set-face-attribute 'web-mode-doctype-face nil :foreground "dim gray")
-   (set-face-attribute 'web-mode-html-attr-name-face nil :foreground "dim gray"))
+  :ensure t
+  :commands web-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.jinja\\'" . web-mode))
+  :config
+  (setq web-mode-enable-auto-pairing nil)
+  (set-face-attribute 'web-mode-html-tag-face nil :foreground "medium blue")
+  (set-face-attribute 'web-mode-doctype-face nil :foreground "dim gray")
+  (set-face-attribute 'web-mode-html-attr-name-face nil :foreground "dim gray"))
 
 ; The lock file directory is not settable so just disable locking.
 (setq create-lockfiles nil)
