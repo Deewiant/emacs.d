@@ -442,7 +442,10 @@
   :diminish anaconda-mode
   :init
   (add-hook 'python-mode-hook 'anaconda-mode)
-  (add-hook 'python-mode-hook 'eldoc-mode)
+  (my-use-package eldoc
+    :diminish eldoc-mode
+    :init
+    (add-hook 'python-mode-hook 'eldoc-mode))
   :config
   (evil-leader/set-key-for-mode 'python-mode
     "d" 'anaconda-mode-show-doc
