@@ -129,6 +129,8 @@
   :init
   (defun toggle-column-enforcement ()
     (interactive)
+    ; Kind of the wrong place for this setting but it works for me.
+    (setq-local column-enforce-column fill-column)
     (if (and (boundp 'column-enforce-mode) column-enforce-mode)
         (column-enforce-mode -1)
       (column-enforce-mode t)))
