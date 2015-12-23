@@ -295,6 +295,7 @@
 (setq backward-delete-char-untabify-method nil)
 
 (setq-default fill-column 80)
+(add-hook 'python-mode-hook (lambda () (setq-local fill-column 79)))
 
 (c-add-style "deewiant" '("k&r" (c-basic-offset . 3)))
 (setq-default c-default-style "deewiant")
