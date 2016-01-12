@@ -487,6 +487,8 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.jinja\\'" . web-mode))
+  (push 'web-mode-code-indent-offset safe-local-variable-values)
+  (push 'web-mode-script-padding safe-local-variable-values)
   :config
   (setq web-mode-enable-auto-pairing nil)
   (set-face-attribute 'web-mode-html-tag-face nil :foreground "medium blue")
