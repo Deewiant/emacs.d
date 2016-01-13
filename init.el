@@ -195,11 +195,6 @@
   (setq hes-mode-alist (cons `(php-mode . ,my-hes-php-re) hes-mode-alist))
   (hes-mode))
 
-(my-use-package smooth-scrolling
-  :ensure t
-  :config
-  (setq smooth-scroll-margin 5))
-
 (my-use-package dtrt-indent
   :ensure t
   :config
