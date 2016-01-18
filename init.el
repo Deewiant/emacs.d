@@ -486,6 +486,7 @@
   (push 'web-mode-script-padding safe-local-variable-values)
   :config
   (setq web-mode-enable-auto-pairing nil)
+  (setq web-mode-enable-auto-quoting nil)
   (set-face-attribute 'web-mode-html-tag-face nil :foreground "medium blue")
   (set-face-attribute 'web-mode-doctype-face nil :foreground "dim gray")
   (set-face-attribute 'web-mode-html-attr-name-face nil :foreground "dim gray"))
