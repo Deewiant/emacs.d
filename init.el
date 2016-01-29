@@ -219,6 +219,11 @@
   (which-key-mode)
   (which-key-setup-side-window-right-bottom))
 
+(my-use-package whitespace
+  :init
+  (add-hook 'whitespace-load-hook (lambda ()
+    (setq whitespace-style (delq 'lines whitespace-style)))))
+
 (my-use-package popwin
   :ensure t
   :config
