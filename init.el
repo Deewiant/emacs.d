@@ -238,7 +238,10 @@
   :ensure t
   ; It knows how to load itself
   :defer t
+  :bind ("C-h a" . helm-apropos)
   :bind ("C-x b" . helm-mini)
+  :bind ("C-c r" . helm-resume)
+  :bind ("M-x" . helm-M-x)
   :config
   (use-package grep)
   (push '("^\\*[Hh]elm.+\\*$" :regexp t :height 15)
