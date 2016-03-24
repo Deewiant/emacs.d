@@ -506,8 +506,8 @@
   :ensure t
   :config
   (color-theme-approximate-on))
+(load-theme 'tsdh-dark t)
 
-(set-background-color "#d8d8d8")
 (setq blink-cursor-blinks 1)
 (setq echo-keystrokes 0.1)
 (setq window-min-height 2)
