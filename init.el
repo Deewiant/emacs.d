@@ -252,6 +252,7 @@
   :bind ("M-x" . helm-M-x)
   :config
   (use-package grep)
+  (setq helm-split-window-in-side-p t)
   (push '("^\\*[Hh]elm.+\\*$" :regexp t :height 15)
         popwin:special-display-config))
 (my-use-package helm-ag
