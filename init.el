@@ -442,27 +442,20 @@
             (lambda () (modify-syntax-entry ?$ "." php-mode-syntax-table)))
   (add-hook 'php-mode-hook 'my-gtags-mode))
 
-(my-use-package anaconda-mode
+(my-use-package elpy
   :ensure t
-  :commands anaconda-mode
-  :diminish anaconda-mode
+  :diminish elpy-mode
+  :commands elpy-enable
   :init
-  (add-hook 'python-mode-hook 'anaconda-mode)
-  (my-use-package eldoc
-    :diminish eldoc-mode
-    :init
-    (add-hook 'python-mode-hook 'anaconda-eldoc-mode))
+  ; Elpy needs to be enabled before activating python-mode so python-mode-hook
+  ; would be too late.
+  (with-eval-after-load 'python (elpy-enable))
   :config
-  (evil-leader/set-key-for-mode 'python-mode
-    "d" 'anaconda-mode-show-doc
-    "fa" 'anaconda-mode-find-assignments
-    "fd" 'anaconda-mode-find-definitions
-    "fr" 'anaconda-mode-find-references)
-  (evil-define-key 'normal anaconda-mode-view-mode-map "q" 'quit-window)
-  (my-use-package company-anaconda
-    :ensure t
-    :config
-    (add-to-list 'company-backends 'company-anaconda)))
+  (dolist (mod '(elpy-module-flymake
+                 elpy-module-highlight-indentation
+                 elpy-module-yasnippet))
+    (setq elpy-modules (delq mod elpy-modules)))
+  (define-key evil-normal-state-local-map (kbd "C-]") 'elpy-goto-definition))
 
 (my-use-package pyvenv
   :ensure t
