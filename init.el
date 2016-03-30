@@ -195,6 +195,14 @@
   (setq hes-mode-alist (cons `(php-mode . ,my-hes-php-re) hes-mode-alist))
   (hes-mode))
 
+; More code folding support, Evil knows to use it if available.
+(my-use-package hideshow
+  :config
+  (add-hook 'python-mode-hook #'hs-minor-mode)
+  (add-hook 'c-mode-hook #'hs-minor-mode)
+  (add-hook 'c++-mode-hook #'hs-minor-mode)
+  (add-hook 'java-mode-hook #'hs-minor-mode))
+
 (my-use-package dtrt-indent
   :ensure t
   :config
