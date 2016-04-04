@@ -197,6 +197,7 @@
 
 ; More code folding support, Evil knows to use it if available.
 (my-use-package hideshow
+  :diminish hs-minor-mode
   :config
   (add-hook 'python-mode-hook #'hs-minor-mode)
   (add-hook 'c-mode-hook #'hs-minor-mode)
