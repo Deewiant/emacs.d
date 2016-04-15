@@ -50,11 +50,6 @@
     :config
     (evil-commentary-mode))
 
-  (my-use-package evil-jumper
-    :ensure t
-    :config
-    (evil-jumper-mode))
-
   (my-use-package evil-snipe
     :ensure t
     :diminish evil-snipe-local-mode
