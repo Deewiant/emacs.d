@@ -318,7 +318,35 @@
     (interactive)
     (company-begin-backend 'company-dabbrev))
   (global-company-mode)
-  (setq company-dabbrev-downcase nil)
+  (use-package company-dabbrev
+    :config
+    ; This basically makes this equivalent to company-dabbrev-code, but without
+    ; the "ignore things in comments and strings" feature.
+    (setq company-dabbrev-char-regexp "\\(?:\\sw\\|\\s_\\)")
+    (setq company-dabbrev-downcase nil)
+    (setq company-dabbrev-ignore-case t)
+
+    ; Replace company-dabbrev-code (in the grouped backend containing it) with
+    ; company-dabbrev, move everything after that backend to before it because
+    ; company-dabbrev will always succeed (at the time of writing that means only
+    ; company-oddmuse, which seems like it should be earlier anyway since it's a
+    ; mode-specific one), and delete the original lone company-dabbrev entry.
+    ;
+    ; Basically this, coupled with the company-dabbrev-char-regexp setting above,
+    ; means that we get word-and-symbol completion as a last resort in all
+    ; buffers, even from strings and comments.
+    (message "Original backends: %s" company-backends)
+    (let* ((bes (delq 'company-dabbrev company-backends))
+           (dabbrev-be
+            (cl-find-if (lambda (be)
+                          (and (listp be) (memq 'company-dabbrev-code be)))
+                        company-backends))
+           (bes (delq dabbrev-be bes))
+           (dabbrev-be2
+            (cl-substitute 'company-dabbrev 'company-dabbrev-code dabbrev-be))
+           (bes (append bes (list dabbrev-be2))))
+      (customize-set-variable 'company-backends bes)))
+
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 2)
   (setq company-show-numbers t)
