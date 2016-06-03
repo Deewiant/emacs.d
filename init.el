@@ -32,6 +32,10 @@
     (puthash name nil my-used-packages)
     (append `(use-package ,name) args)))
 
+(use-package savehist
+  :config
+  (savehist-mode 1))
+
 (my-use-package evil
   :ensure t
   :diminish undo-tree-mode
