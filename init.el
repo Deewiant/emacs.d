@@ -11,7 +11,7 @@
   ; We already initialized above.
   (setq package-enable-at-startup nil)
 
-  (defvar my-used-packages (make-hash-table))
+  (defvar my-ensured-packages (make-hash-table))
 
   ; Most things are installed by use-package, so that's all we need to get
   ; manually.
@@ -19,17 +19,18 @@
     (unless (package-installed-p p)
       (unless (assq p package-archive-contents) (package-refresh-contents))
       (package-install p))
-    (puthash p nil my-used-packages))
+    (puthash p nil my-ensured-packages))
 
   (defvar use-package-verbose t)
   (require 'cl-lib)
   (require 'use-package)
 
-  ; Technically we only care about packages that have an :ensure setting, but it
-  ; doesn't matter to remember all of them.
   (defmacro my-use-package (name &rest args)
-    "Like use-package, but remembers the used package in my-used-packages."
-    (puthash name nil my-used-packages)
+    "Like use-package, but saves the ensured package (if any) in
+my-ensured-packages."
+    (let* ((ensure (cadr (memq :ensure args)))
+           (pkg (if (eq ensure t) name ensure)))
+      (if ensure (puthash pkg nil my-ensured-packages)))
     (append `(use-package ,name) args)))
 
 (use-package savehist
@@ -581,7 +582,7 @@
     revdeps))
 
 (defun my-package-is-orphan (pkg revdeps)
-  (when (eq (gethash pkg my-used-packages 'my-missing) 'my-missing)
+  (when (eq (gethash pkg my-ensured-packages 'my-missing) 'my-missing)
     (let ((users (gethash pkg revdeps 'my-missing)))
       (or (eq users 'my-missing)
           (cl-reduce (lambda (x y) (and x y))
@@ -593,7 +594,7 @@
   (let ((revdeps (my-get-all-package-revdeps))
         (implicits (cl-remove-if-not
                     (lambda (p)
-                      (eq (gethash (car p) my-used-packages 'my-missing)
+                      (eq (gethash (car p) my-ensured-packages 'my-missing)
                           'my-missing))
                     package-alist))
         (result '()))
@@ -602,12 +603,12 @@
         (push imp result)))
     (delete-dups result)))
 
-; Populate my-used-packages at runtime as well.
+; Populate my-ensured-packages at runtime as well.
 (cl-macrolet
     ((my-populate-used-packages ()
        (cons 'progn
-             (mapcar (lambda (pkg) `(puthash ',pkg nil my-used-packages))
-                     (hash-table-keys my-used-packages)))))
+             (mapcar (lambda (pkg) `(puthash ',pkg nil my-ensured-packages))
+                     (hash-table-keys my-ensured-packages)))))
   (my-populate-used-packages))
 
 (let* ((orphans (my-get-unused-packages))
