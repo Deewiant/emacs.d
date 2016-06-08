@@ -538,7 +538,8 @@ my-ensured-packages."
   :ensure t
   :config
   (color-theme-approximate-on))
-(load-theme 'tsdh-dark t)
+(my-use-package spacemacs-dark-theme
+  :ensure spacemacs-theme)
 
 (setq blink-cursor-blinks 1)
 (setq echo-keystrokes 0.1)
