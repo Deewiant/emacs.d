@@ -507,18 +507,6 @@ my-ensured-packages."
   :ensure t
   :commands puppet-mode)
 
-; Backup and auto-save into a global directory instead of next to the edited
-; file, don't clobber hard links when backing up, delete old backups silently,
-; and back up version controlled files as well.
-(let ((auto-save-dir (concat user-emacs-directory "auto-saves/")))
-  (make-directory auto-save-dir t)
-  (setq backup-by-copying t
-        backup-directory-alist `(("." .
-                                  ,(concat user-emacs-directory "backups/")))
-        auto-save-file-name-transforms `((".*" ,auto-save-dir t))
-        delete-old-versions t
-        vc-make-backup-files t))
-
 (my-use-package web-mode
   :ensure t
   :commands web-mode
@@ -530,6 +518,18 @@ my-ensured-packages."
   :config
   (setq web-mode-enable-auto-pairing nil)
   (setq web-mode-enable-auto-quoting nil))
+
+; Backup and auto-save into a global directory instead of next to the edited
+; file, don't clobber hard links when backing up, delete old backups silently,
+; and back up version controlled files as well.
+(let ((auto-save-dir (concat user-emacs-directory "auto-saves/")))
+  (make-directory auto-save-dir t)
+  (setq backup-by-copying t
+        backup-directory-alist `(("." .
+                                  ,(concat user-emacs-directory "backups/")))
+        auto-save-file-name-transforms `((".*" ,auto-save-dir t))
+        delete-old-versions t
+        vc-make-backup-files t))
 
 ; The lock file directory is not settable so just disable locking.
 (setq create-lockfiles nil)
