@@ -507,6 +507,10 @@ my-ensured-packages."
   :ensure t
   :commands puppet-mode)
 
+(my-use-package tup-mode
+  :ensure t
+  :commands tup-mode)
+
 (my-use-package web-mode
   :ensure t
   :commands web-mode
