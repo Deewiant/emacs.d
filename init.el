@@ -286,6 +286,16 @@ my-ensured-packages."
 
 (my-use-package flycheck
   :ensure t
+  :init
+  (defun my-safe-gcc-p (x)
+    (member x (list "avr-gcc")))
+  (put 'flycheck-c/c++-gcc-executable 'safe-local-variable #'my-safe-gcc-p)
+  (defun my-safe-gcc-arg-p (x)
+    (or (string-prefix-p "-O" x)
+        (string-prefix-p "-m" x)
+        (string-prefix-p "-std" x)))
+  (put 'flycheck-gcc-args 'safe-local-variable
+       (lambda (xs) (cl-every #'my-safe-gcc-arg-p xs)))
   :config
   (my-use-package flycheck-pos-tip
     :ensure t
