@@ -525,6 +525,10 @@ my-ensured-packages."
   :ensure t
   :commands tup-mode)
 
+(my-use-package yaml-mode
+  :ensure t
+  :commands yaml-mode)
+
 (my-use-package web-mode
   :ensure t
   :commands web-mode
