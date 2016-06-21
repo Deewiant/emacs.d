@@ -483,6 +483,10 @@ my-ensured-packages."
     :config
     (add-hook 'flycheck-mode-hook #'flycheck-haskell-setup)))
 
+(my-use-package jinja2-mode
+  :ensure t
+  :commands jinja2-mode)
+
 (my-use-package php-mode
   :ensure t
   :commands php-mode
