@@ -4,8 +4,8 @@
   (require 'package)
   (setq package-archives
         '(("gnu" . "https://elpa.gnu.org/packages/")
-          ("melpa-stable" . "http://stable.melpa.org/packages/")
-          ("melpa-unstable" . "http://unstable.melpa.org/packages/")))
+          ("melpa-stable" . "https://stable.melpa.org/packages/")
+          ("melpa-unstable" . "https://melpa.org/packages/")))
   (package-initialize)
 
   ; We already initialized above.
