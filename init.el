@@ -258,8 +258,8 @@ my-ensured-packages."
     :bind ("C-h v" . counsel-describe-variable))
   (my-use-package swiper
     :ensure t
-    :bind ("M-s o" . swiper)
-    :bind ("M-s O" . swiper-all)))
+    :bind ("C-s" . swiper)
+    :bind ("M-s o" . swiper-all)))
 
 ; Helm is still needed for dash, flycheck, gtags; also used for apropos as a
 ; bonus, though that one's not so important.
