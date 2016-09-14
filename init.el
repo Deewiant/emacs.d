@@ -64,7 +64,9 @@ my-ensured-packages."
     (evil-declare-ignore-repeat 'evil-snipe-repeat)
     (evil-declare-ignore-repeat 'evil-snipe-repeat-reverse)
     (setq evil-snipe-scope 'visible)
-    (setq evil-snipe-repeat-scope 'whole-buffer))
+    (setq evil-snipe-repeat-scope 'whole-buffer)
+    ; Don't repeat search on another press of s/S.
+    (setq evil-snipe-repeat-keys nil))
 
   (my-use-package evil-surround
     :ensure t
