@@ -243,46 +243,52 @@ my-ensured-packages."
   :config
   (cycbuf-init))
 
+(my-use-package ivy
+  :ensure t
+  :bind ("C-x b" . ivy-switch-buffer)
+  :bind ("C-c r" . ivy-resume)
+  :init
+  (my-use-package counsel
+    :ensure t
+    :bind ("M-x" . counsel-M-x)
+    :bind ("C-h f" . counsel-describe-function)
+    :bind ("C-h v" . counsel-describe-variable)))
+
+; Helm is still needed for dash, flycheck, gtags; also used for apropos as a
+; bonus, though that one's not so important.
 (my-use-package helm
   :ensure t
   ; It knows how to load itself
   :defer t
   :bind ("C-h a" . helm-apropos)
-  :bind ("C-x b" . helm-mini)
-  :bind ("C-c r" . helm-resume)
-  :bind ("M-x" . helm-M-x)
   :config
   (use-package grep)
   (setq helm-split-window-in-side-p t)
   (push '("^\\*[Hh]elm.+\\*$" :regexp t :height 15)
-        popwin:special-display-config))
-(my-use-package helm-ag
-  :ensure t
-  ; It knows how to load itself
-  :defer t)
-(my-use-package helm-dash
-  :ensure t
-  :commands helm-dash helm-dash-at-point)
+        popwin:special-display-config)
+
+  (my-use-package helm-dash
+    :ensure t
+    :commands helm-dash helm-dash-at-point))
 
 (my-use-package wgrep
   :ensure t
-  :commands wgrep-change-to-wgrep-mode
-  :config
-  (my-use-package wgrep-ag
-    :ensure t)
-  (my-use-package wgrep-helm
-    :ensure t))
+  :commands wgrep-change-to-wgrep-mode)
 
 (my-use-package projectile
   :ensure t
   :bind-keymap ("C-c p" . projectile-command-map)
   :config
-  (my-use-package helm-projectile
+  (my-use-package counsel-projectile
     :ensure t
     :config
-    (setq projectile-completion-system 'helm)
-    (helm-projectile-on))
-  (projectile-global-mode))
+    (setq projectile-completion-system 'ivy))
+  (projectile-global-mode)
+
+  (defun my-projectile-counsel-ag ()
+    (interactive)
+    (counsel-ag nil (projectile-project-root)))
+  (define-key projectile-command-map (kbd "s s") #'my-projectile-counsel-ag))
 
 (my-use-package flycheck
   :ensure t
