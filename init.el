@@ -500,6 +500,10 @@ my-ensured-packages."
   :ensure t
   :commands jinja2-mode)
 
+(my-use-package llvm-mode
+  :ensure t
+  :commands llvm-mode)
+
 (my-use-package php-mode
   :ensure t
   :commands php-mode
