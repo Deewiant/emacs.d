@@ -504,6 +504,10 @@ my-ensured-packages."
   :ensure t
   :commands llvm-mode)
 
+(my-use-package markdown-mode
+  :ensure t
+  :commands markdown-mode)
+
 (my-use-package php-mode
   :ensure t
   :commands php-mode
