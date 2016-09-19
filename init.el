@@ -215,12 +215,19 @@ my-ensured-packages."
   :ensure t
   :diminish ws-butler-mode
   :config
-  (setq orig-ws-butler-clean-region (symbol-function #'ws-butler-clean-region))
   (defun ws-butler-clean-region (beg end)
     "Delete trailing blanks in region BEG END. Don't touch indentation."
     (interactive "*r")
-    (let ((indent-tabs-mode t))
-      (apply orig-ws-butler-clean-region beg end '())))
+    (ws-butler-with-save
+     (narrow-to-region beg end)
+     ;;  _much slower would be:       (replace-regexp "[ \t]+$" "")
+     (goto-char (point-min))
+     (while (not (eobp))
+       (end-of-line)
+       (delete-horizontal-space)
+       (forward-line 1)))
+    ;; clean return code for hooks
+    nil)
   (ws-butler-global-mode))
 
 (my-use-package which-key
