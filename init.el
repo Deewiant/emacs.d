@@ -263,6 +263,8 @@ my-ensured-packages."
     :bind ("C-c f" . counsel-recentf)
     :bind ("C-h f" . counsel-describe-function)
     :bind ("C-h v" . counsel-describe-variable))
+  (my-use-package ivy-hydra
+    :ensure t)
   (my-use-package swiper
     :ensure t
     :bind ("C-s" . swiper)
