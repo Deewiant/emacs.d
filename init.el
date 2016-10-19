@@ -590,6 +590,10 @@ my-ensured-packages."
 ; The lock file directory is not settable so just disable locking.
 (setq create-lockfiles nil)
 
+; Write customizations into a separate file that we can manually look at if we
+; want to.
+(setq custom-file (concat user-emacs-directory "customs.el"))
+
 (my-use-package color-theme-approximate
   :ensure t
   :config
