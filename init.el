@@ -484,6 +484,10 @@ my-ensured-packages."
   :ensure t
   :commands glsl-mode)
 
+(my-use-package groovy-mode
+  :ensure t
+  :commands groovy-mode)
+
 (my-use-package haskell-mode
   :ensure t
   :commands haskell-mode
