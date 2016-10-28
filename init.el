@@ -472,6 +472,10 @@ my-ensured-packages."
     (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
     (add-to-list 'company-backends 'company-irony)))
 
+(my-use-package cython-mode
+  :ensure t
+  :commands cython-mode)
+
 (my-use-package dockerfile-mode
   :ensure t
   :commands dockerfile-mode)
