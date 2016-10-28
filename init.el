@@ -137,7 +137,9 @@ my-ensured-packages."
         (column-enforce-mode -1)
       (column-enforce-mode t)))
   (define-key evil-normal-state-map (kbd "RET") 'toggle-column-enforcement)
-  (evil-declare-ignore-repeat 'toggle-column-enforcement))
+  (evil-declare-ignore-repeat 'toggle-column-enforcement)
+  ; Use fill-column instead.
+  (setq-default column-enforce-column nil))
 
 (defun my-insert-file-created ()
   (interactive)
