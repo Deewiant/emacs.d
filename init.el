@@ -476,7 +476,10 @@ my-ensured-packages."
 
 (my-use-package cython-mode
   :ensure t
-  :commands cython-mode)
+  :commands cython-mode
+  :config
+  (my-use-package flycheck-cython
+    :ensure t))
 
 (my-use-package dockerfile-mode
   :ensure t
