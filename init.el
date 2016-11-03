@@ -121,6 +121,9 @@ my-ensured-packages."
   ; to this.
   (define-key evil-normal-state-map "|" 'evil-execute-in-emacs-state)
 
+  ; Enable register pasting into the minibuffer.
+  (define-key minibuffer-local-map "\C-r" #'evil-paste-from-register)
+
   (define-key evil-normal-state-map "~" 'evil-invert-case)
   (define-key evil-normal-state-map "Y" 'yank-to-eol)
   (define-key evil-insert-state-map (kbd "RET") 'comment-indent-new-line))
@@ -270,7 +273,10 @@ my-ensured-packages."
   (my-use-package swiper
     :ensure t
     :bind ("C-s" . swiper)
-    :bind ("M-s o" . swiper-all)))
+    :bind ("M-s o" . swiper-all))
+  :config
+  ; Enable register pasting into Ivy's minibuffer.
+  (define-key ivy-minibuffer-map "\C-r" #'evil-paste-from-register))
 
 ; Helm is still needed for dash, flycheck, gtags; also used for apropos as a
 ; bonus, though that one's not so important.
