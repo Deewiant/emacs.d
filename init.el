@@ -340,7 +340,11 @@ my-ensured-packages."
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   (push "*Flycheck errors*" popwin:special-display-config)
   (define-key evil-normal-state-map "[f" 'flycheck-previous-error)
-  (define-key evil-normal-state-map "]f" 'flycheck-next-error))
+  (define-key evil-normal-state-map "]f" 'flycheck-next-error)
+
+  ; Run pylint after flake8, if both are available. (flake8 is lighter, so run
+  ; it first.)
+  (flycheck-add-next-checker 'python-flake8 'python-pylint))
 
 (setq sentence-end-double-space nil)
 
