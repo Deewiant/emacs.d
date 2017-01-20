@@ -274,12 +274,21 @@ my-ensured-packages."
     :ensure t
     :bind ("C-s" . swiper)
     :bind ("M-s o" . swiper-all))
+  (my-use-package counsel-dash
+    :ensure t
+    :commands counsel-dash
+    :init
+    ; Perhaps upstream at some point:
+    ; https://github.com/nathankot/counsel-dash/issues/3
+    (defun counsel-dash-at-point ()
+      (interactive)
+      (counsel-dash (thing-at-point 'symbol))))
   :config
   ; Enable register pasting into Ivy's minibuffer.
   (define-key ivy-minibuffer-map "\C-r" #'evil-paste-from-register))
 
-; Helm is still needed for dash and flycheck; also used for apropos as a
-; bonus, though that one's not so important.
+; Helm is still needed for flycheck; also used for apropos as a bonus, though
+; that one's not so important.
 (my-use-package helm
   :ensure t
   ; It knows how to load itself
@@ -289,11 +298,7 @@ my-ensured-packages."
   (use-package grep)
   (setq helm-split-window-in-side-p t)
   (push '("^\\*[Hh]elm.+\\*$" :regexp t :height 15)
-        popwin:special-display-config)
-
-  (my-use-package helm-dash
-    :ensure t
-    :commands helm-dash helm-dash-at-point))
+        popwin:special-display-config))
 
 (my-use-package wgrep
   :ensure t
