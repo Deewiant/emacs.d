@@ -278,7 +278,7 @@ my-ensured-packages."
   ; Enable register pasting into Ivy's minibuffer.
   (define-key ivy-minibuffer-map "\C-r" #'evil-paste-from-register))
 
-; Helm is still needed for dash, flycheck, gtags; also used for apropos as a
+; Helm is still needed for dash and flycheck; also used for apropos as a
 ; bonus, though that one's not so important.
 (my-use-package helm
   :ensure t
@@ -417,37 +417,14 @@ my-ensured-packages."
   (defun my-gtags-mode ()
     (interactive)
     (ggtags-mode)
-    (helm-gtags-mode))
+    (counsel-gtags-mode))
   :config
-  (my-use-package helm-gtags
+  (my-use-package counsel-gtags
     :ensure t
-    :diminish helm-gtags-mode
-    :commands helm-gtags-mode
+    :diminish counsel-gtags-mode
+    :commands counsel-gtags-mode
     :config
-
-    ; A copy of helm-gtags-dwim but falling back to helm-gtags-select instead of
-    ; helm-gtags-find-tag. We can't easily advise it or helm-gtags-find-tag or
-    ; anything like that because helm-gtags-find-tag is called interactively, so
-    ; just copy it.
-    (defun my-helm-gtags-dwim ()
-      (interactive)
-      (let ((line (helm-current-line-contents)))
-        (if (string-match helm-gtags--include-regexp line)
-            (let ((helm-gtags-use-input-at-cursor t))
-              (helm-gtags-find-files (match-string-no-properties 1 line)))
-          (if (and (buffer-file-name) (thing-at-point 'symbol))
-              (helm-gtags-find-tag-from-here)
-            (helm-gtags-select)))))
-
-    (defun my-helm-gtags-split-dwim ()
-      (interactive)
-      (evil-window-split)
-      (my-helm-gtags-dwim))
-
-    (setq helm-gtags-auto-update t)
-    (define-key evil-normal-state-map (kbd "C-]") 'my-helm-gtags-dwim)
-    (define-key evil-normal-state-map (kbd "C-w C-]")
-      'my-helm-gtags-split-dwim)))
+    (define-key evil-normal-state-map (kbd "C-]") 'counsel-gtags-dwim)))
 
 (my-use-package generic-x
   :config
