@@ -568,6 +568,10 @@ my-ensured-packages."
     (add-hook 'rust-mode-hook #'racer-mode)
     (add-hook 'racer-mode-hook #'company-mode)))
 
+(my-use-package toml-mode
+  :ensure t
+  :commands toml-mode)
+
 (my-use-package tup-mode
   :ensure t
   :commands tup-mode)
