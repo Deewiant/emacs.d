@@ -558,7 +558,15 @@ my-ensured-packages."
 
 (my-use-package rust-mode
   :ensure t
-  :commands rust-mode)
+  :commands rust-mode
+  :config
+  (my-use-package racer
+    :ensure t
+    :diminish racer-mode
+    :commands racer-mode
+    :init
+    (add-hook 'rust-mode-hook #'racer-mode)
+    (add-hook 'racer-mode-hook #'company-mode)))
 
 (my-use-package tup-mode
   :ensure t
