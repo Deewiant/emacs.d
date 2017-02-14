@@ -566,7 +566,8 @@ my-ensured-packages."
     :commands racer-mode
     :init
     (add-hook 'rust-mode-hook #'racer-mode)
-    (add-hook 'racer-mode-hook #'company-mode)))
+    (add-hook 'racer-mode-hook #'company-mode))
+  (setq rust-format-on-save t))
 
 (my-use-package toml-mode
   :ensure t
