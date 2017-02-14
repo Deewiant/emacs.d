@@ -559,7 +559,7 @@ my-ensured-packages."
 (my-use-package rust-mode
   :ensure t
   :commands rust-mode
-  :config
+  :init
   (my-use-package racer
     :ensure t
     :diminish racer-mode
