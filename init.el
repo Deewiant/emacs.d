@@ -567,6 +567,12 @@ my-ensured-packages."
     :init
     (add-hook 'rust-mode-hook #'racer-mode)
     (add-hook 'racer-mode-hook #'company-mode))
+  (my-use-package cargo
+    :ensure t
+    :diminish cargo-minor-mode
+    :commands cargo-minor-mode
+    :init
+    (add-hook 'rust-mode-hook #'cargo-minor-mode))
   (setq rust-format-on-save t))
 
 (my-use-package toml-mode
