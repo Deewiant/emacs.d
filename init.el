@@ -421,7 +421,10 @@ my-ensured-packages."
   (setq dumb-jump-force-searcher 'rg)
   (setq dumb-jump-selector 'ivy)
   (define-key evil-normal-state-map (kbd "C-]") 'dumb-jump-go)
-  (define-key evil-normal-state-map (kbd "C-w C-]") 'dumb-jump-go-other-window))
+  (define-key evil-normal-state-map (kbd "C-w C-]") 'dumb-jump-go-other-window)
+  ; C-} = C-S-]
+  (define-key evil-normal-state-map (kbd "C-}") 'dumb-jump-go-prefer-external)
+  (define-key evil-normal-state-map (kbd "C-w C-}") 'dumb-jump-go-prefer-external-other-window))
 
 (my-use-package generic-x
   :config
