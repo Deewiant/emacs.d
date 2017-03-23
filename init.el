@@ -414,22 +414,14 @@ my-ensured-packages."
     :config
     (company-quickhelp-mode 1)))
 
-(my-use-package ggtags
+(my-use-package dumb-jump
   :ensure t
-  :diminish ggtags-mode ggtags-navigation-mode
-  :commands ggtags-mode
-  :init
-  (defun my-gtags-mode ()
-    (interactive)
-    (ggtags-mode)
-    (counsel-gtags-mode))
+  :diminish dumb-jump-mode
   :config
-  (my-use-package counsel-gtags
-    :ensure t
-    :diminish counsel-gtags-mode
-    :commands counsel-gtags-mode
-    :config
-    (define-key evil-normal-state-map (kbd "C-]") 'counsel-gtags-dwim)))
+  (setq dumb-jump-force-searcher 'rg)
+  (setq dumb-jump-selector 'ivy)
+  (define-key evil-normal-state-map (kbd "C-]") 'dumb-jump-go)
+  (define-key evil-normal-state-map (kbd "C-w C-]") 'dumb-jump-go-other-window))
 
 (my-use-package generic-x
   :config
