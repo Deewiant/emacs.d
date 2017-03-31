@@ -267,7 +267,9 @@ my-ensured-packages."
     :bind ("M-x" . counsel-M-x)
     :bind ("C-c f" . counsel-recentf)
     :bind ("C-h f" . counsel-describe-function)
-    :bind ("C-h v" . counsel-describe-variable))
+    :bind ("C-h v" . counsel-describe-variable)
+    :bind (:map minibuffer-local-map
+           ("C-s" . counsel-expression-history)))
   (my-use-package ivy-hydra
     :ensure t)
   (my-use-package swiper
