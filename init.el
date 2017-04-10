@@ -316,10 +316,10 @@ my-ensured-packages."
     (setq projectile-completion-system 'ivy))
   (projectile-global-mode)
 
-  (defun my-projectile-counsel-ag ()
+  (defun my-projectile-counsel-rg ()
     (interactive)
-    (counsel-ag nil (projectile-project-root)))
-  (define-key projectile-command-map (kbd "s s") #'my-projectile-counsel-ag))
+    (counsel-rg nil (projectile-project-root)))
+  (define-key projectile-command-map (kbd "s s") #'my-projectile-counsel-rg))
 
 (my-use-package flycheck
   :ensure t
