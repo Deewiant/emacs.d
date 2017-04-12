@@ -446,6 +446,13 @@ my-ensured-packages."
   (add-hook 'c-mode-hook #'my-add-clang-format-hook-hook)
   (add-hook 'c++-mode-hook #'my-add-clang-format-hook-hook))
 
+; Note: will fail if .clang-tidy file does not exist (can be empty to
+; effectively disable the checker)
+(my-use-package flycheck-clang-tidy
+  :ensure t
+  :init
+  (add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup))
+
 (my-use-package irony
   :ensure t
   :diminish irony-mode
