@@ -435,6 +435,17 @@ my-ensured-packages."
    (append generic-default-modes generic-mswindows-modes generic-unix-modes
            generic-other-modes)))
 
+(my-use-package clang-format
+  :ensure t
+  :commands clang-format clang-format-buffer clang-format-region
+  :init
+  (defun my-clang-format-hook ()
+    (clang-format-buffer))
+  (defun my-add-clang-format-hook-hook ()
+    (add-hook 'before-save-hook #'my-clang-format-hook nil t))
+  (add-hook 'c-mode-hook #'my-add-clang-format-hook-hook)
+  (add-hook 'c++-mode-hook #'my-add-clang-format-hook-hook))
+
 (my-use-package irony
   :ensure t
   :diminish irony-mode
