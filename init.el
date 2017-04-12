@@ -437,6 +437,7 @@ my-ensured-packages."
 
 (my-use-package irony
   :ensure t
+  :diminish irony-mode
   :commands irony-mode
   :init
   (defun my-irony-mode-enable ()
