@@ -442,7 +442,8 @@ my-ensured-packages."
   (defun my-clang-format-hook ()
     (clang-format-buffer))
   (defun my-add-clang-format-hook-hook ()
-    (add-hook 'before-save-hook #'my-clang-format-hook nil t))
+    (when (memq major-mode '(c-mode c++-mode))
+      (add-hook 'before-save-hook #'my-clang-format-hook nil t)))
   (add-hook 'c-mode-hook #'my-add-clang-format-hook-hook)
   (add-hook 'c++-mode-hook #'my-add-clang-format-hook-hook))
 
