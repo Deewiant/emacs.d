@@ -216,6 +216,12 @@ my-ensured-packages."
   :config
   (dtrt-indent-mode 1))
 
+(my-use-package editorconfig
+  :diminish editorconfig-mode
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
 (my-use-package ws-butler
   :ensure t
   :diminish ws-butler-mode
