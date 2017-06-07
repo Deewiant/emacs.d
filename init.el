@@ -500,6 +500,10 @@ my-ensured-packages."
   :ensure t
   :commands dockerfile-mode)
 
+(my-use-package feature-mode
+  :ensure t
+  :commands feature-mode)
+
 (my-use-package glsl-mode
   :ensure t
   :commands glsl-mode)
