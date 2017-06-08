@@ -610,6 +610,10 @@ my-ensured-packages."
   :ensure t
   :commands tup-mode)
 
+(my-use-package typescript-mode
+  :ensure t
+  :commands typescript-mode)
+
 (my-use-package yaml-mode
   :ensure t
   :commands yaml-mode)
