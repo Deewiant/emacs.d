@@ -655,6 +655,37 @@ my-ensured-packages."
 ; want to.
 (setq custom-file (concat user-emacs-directory "customs.el"))
 
+(my-use-package all-the-icons
+  :ensure t
+  :config
+  (defun my-mode-line-vc-git ()
+    (let ((branch (mapconcat #'concat (cdr (split-string vc-mode "[:-]")) "-")))
+      (concat
+       (propertize (format " %s" (all-the-icons-octicon "git-branch"))
+                   'face `(:height 1 :family ,(all-the-icons-octicon-family))
+                   'display '(raise 0))
+       (propertize (format " %s" branch)))))
+
+  (defvar my-mode-line-vc
+    '(:propertize
+      (:eval (when vc-mode
+               (cond
+                ((string-match "Git[:-]" vc-mode) (my-mode-line-vc-git))
+                (t (format "%s" vc-mode)))))))
+  (setq-default mode-line-format
+    (list " "
+          mode-line-mule-info
+          mode-line-modified
+          mode-line-frame-identification
+          mode-line-buffer-identification
+          " "
+          mode-line-position
+          evil-mode-line-tag
+          my-mode-line-vc
+          " "
+          mode-line-modes
+          mode-line-misc-info)))
+
 (my-use-package color-theme-approximate
   :ensure t
   :config
