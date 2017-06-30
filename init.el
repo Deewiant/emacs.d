@@ -485,6 +485,10 @@ my-ensured-packages."
     (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
     (add-to-list 'company-backends 'company-irony)))
 
+(my-use-package clojure-mode
+  :ensure t
+  :commands clojure-mode)
+
 (my-use-package cython-mode
   :ensure t
   :commands cython-mode
