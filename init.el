@@ -437,6 +437,10 @@ my-ensured-packages."
    (append generic-default-modes generic-mswindows-modes generic-unix-modes
            generic-other-modes)))
 
+(my-use-package asm-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.fasm?\\'" . asm-mode)))
+
 (my-use-package clang-format
   :ensure t
   :commands clang-format clang-format-buffer clang-format-region
