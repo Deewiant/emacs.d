@@ -442,6 +442,7 @@ my-ensured-packages."
   :diminish auto-revert-mode
   :bind ("C-x g" . magit-status)
   :config
+  (setq vc-handled-backends (delq 'Git vc-handled-backends))
   (my-use-package evil-magit
     :ensure t))
 
