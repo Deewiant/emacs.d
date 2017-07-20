@@ -437,6 +437,14 @@ my-ensured-packages."
    (append generic-default-modes generic-mswindows-modes generic-unix-modes
            generic-other-modes)))
 
+(my-use-package magit
+  :ensure t
+  :diminish auto-revert-mode
+  :bind ("C-x g" . magit-status)
+  :config
+  (my-use-package evil-magit
+    :ensure t))
+
 (my-use-package asm-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.fasm?\\'" . asm-mode)))
