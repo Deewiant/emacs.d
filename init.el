@@ -1,3 +1,6 @@
+(setq gc-cons-threshold (* 64 1024 1024))
+(add-hook 'after-init-hook #'(lambda () (setq gc-cons-threshold (* 800 1024))))
+
 (add-to-list 'load-path (concat user-emacs-directory "load/"))
 
 (eval-and-compile
