@@ -448,6 +448,10 @@ my-ensured-packages."
   (setq git-commit-summary-max-length 50)
   (setq vc-handled-backends (delq 'Git vc-handled-backends))
 
+  (defun my-override-commit-fill-column ()
+    (setq-local fill-column 72))
+  (add-hook 'git-commit-mode-hook #'my-override-commit-fill-column)
+
   (my-use-package evil-magit
     :ensure t))
 
