@@ -448,9 +448,6 @@ my-ensured-packages."
   (setq git-commit-summary-max-length 50)
   (setq vc-handled-backends (delq 'Git vc-handled-backends))
 
-  ; Staging is more useful than sniping.
-  (add-hook 'magit-mode-hook 'turn-off-evil-snipe-mode)
-
   (my-use-package evil-magit
     :ensure t))
 
