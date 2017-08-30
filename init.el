@@ -630,10 +630,9 @@ my-ensured-packages."
     (add-hook 'rust-mode-hook #'cargo-minor-mode))
   (setq rust-format-on-save t))
 
-(my-use-package ensime
+(my-use-package scala-mode
   :ensure t
-  :pin melpa-stable
-  :commands scala-mode sbt-mode)
+  :commands scala-mode)
 
 (my-use-package toml-mode
   :ensure t
