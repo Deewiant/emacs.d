@@ -444,6 +444,7 @@ my-ensured-packages."
   :ensure t
   :diminish auto-revert-mode
   :bind ("C-x g" . magit-status)
+  :bind ("C-x M-g" . magit-dispatch-popup)
   :config
   (setq git-commit-summary-max-length 50)
   (setq vc-handled-backends (delq 'Git vc-handled-backends))
