@@ -445,9 +445,12 @@ my-ensured-packages."
   :diminish auto-revert-mode
   :bind ("C-x g" . magit-status)
   :bind ("C-x M-g" . magit-dispatch-popup)
+  :bind ("C-x l" . magit-blame-popup)
   :config
   (setq git-commit-summary-max-length 50)
   (setq vc-handled-backends (delq 'Git vc-handled-backends))
+
+  (magit-change-popup-key 'magit-blame-popup :action ?b ?l)
 
   (defun my-override-commit-fill-column ()
     (setq-local fill-column 72))
