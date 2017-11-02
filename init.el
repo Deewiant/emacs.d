@@ -131,6 +131,10 @@ my-ensured-packages."
   (define-key evil-normal-state-map "Y" 'yank-to-eol)
   (define-key evil-insert-state-map (kbd "RET") 'comment-indent-new-line))
 
+(my-use-package crux
+  :ensure t
+  :bind (("C-c e" . crux-eval-and-replace)))
+
 (my-use-package column-enforce-mode
   :ensure t
   :commands column-enforce-mode
