@@ -646,7 +646,11 @@ my-ensured-packages."
 (my-use-package ensime
   :ensure t
   :pin melpa-stable
-  :after scala-mode)
+  :after scala-mode
+  :bind (:map scala-mode-map
+              ("C-c m e" . ensime)
+         :map ensime-mode-map
+              ("C-c m E" . ensime-reload)))
 
 (my-use-package toml-mode
   :ensure t
