@@ -652,7 +652,10 @@ my-ensured-packages."
          :map ensime-mode-map
               ("C-c m E" . ensime-reload))
   :init
-  (add-hook 'ensime-mode-hook #'(lambda () (setq current-prefix-arg '(-1)) (call-interactively #'yas-minor-mode))))
+  (add-hook 'ensime-mode-hook #'(lambda () (setq current-prefix-arg '(-1)) (call-interactively #'yas-minor-mode)))
+  :config
+  (setq ensime-startup-notification nil)
+  (setq ensime-search-interface 'ivy))
 
 (my-use-package toml-mode
   :ensure t
