@@ -655,7 +655,8 @@ my-ensured-packages."
   (add-hook 'ensime-mode-hook #'(lambda () (setq current-prefix-arg '(-1)) (call-interactively #'yas-minor-mode)))
   :config
   (setq ensime-startup-notification nil)
-  (setq ensime-search-interface 'ivy)
+  ; Disabled because it doesn't actually work properly.
+  ; (setq ensime-search-interface 'ivy)
   (evil-define-key* 'normal ensime-mode-map (kbd "C-]") #'ensime-edit-definition))
 
 (my-use-package toml-mode
