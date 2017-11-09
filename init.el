@@ -437,6 +437,11 @@ my-ensured-packages."
   (define-key evil-normal-state-map (kbd "C-}") 'dumb-jump-go-prefer-external)
   (define-key evil-normal-state-map (kbd "C-w C-}") 'dumb-jump-go-prefer-external-other-window))
 
+(my-use-package ediff
+  :defer t
+  :config
+  (setq ediff-window-setup-function #'ediff-setup-windows-plain))
+
 (my-use-package generic-x
   :config
   (customize-set-variable
