@@ -650,7 +650,9 @@ my-ensured-packages."
   :bind (:map scala-mode-map
               ("C-c m e" . ensime)
          :map ensime-mode-map
-              ("C-c m E" . ensime-reload)))
+              ("C-c m E" . ensime-reload))
+  :init
+  (add-hook 'ensime-mode-hook #'(lambda () (setq current-prefix-arg '(-1)) (call-interactively #'yas-minor-mode))))
 
 (my-use-package toml-mode
   :ensure t
