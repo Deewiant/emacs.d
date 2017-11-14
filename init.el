@@ -657,7 +657,8 @@ my-ensured-packages."
   (setq ensime-startup-notification nil)
   ; Disabled because it doesn't actually work properly.
   ; (setq ensime-search-interface 'ivy)
-  (evil-define-key* 'normal ensime-mode-map (kbd "C-]") #'ensime-edit-definition))
+  (evil-define-key* 'normal ensime-mode-map (kbd "C-]") #'ensime-edit-definition)
+  (set-face-underline 'ensime-implicit-highlight nil))
 
 (my-use-package toml-mode
   :ensure t
