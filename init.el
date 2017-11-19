@@ -531,6 +531,10 @@ my-ensured-packages."
   (my-use-package flycheck-cython
     :ensure t))
 
+(my-use-package dns-mode
+  :config
+  (setq dns-mode-soa-auto-increment-serial nil))
+
 (my-use-package dockerfile-mode
   :ensure t
   :commands dockerfile-mode)
