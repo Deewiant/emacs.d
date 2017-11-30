@@ -165,8 +165,19 @@ my-ensured-packages."
   (eyebrowse-mode t)
   (setq eyebrowse-wrap-around t)
   (setq eyebrowse-new-workspace t)
-  (define-key evil-motion-state-map (kbd "gt") 'eyebrowse-next-window-config)
-  (define-key evil-motion-state-map (kbd "gT") 'eyebrowse-prev-window-config))
+  ; eyebrowse-setup-opinionated-keys minus the C-<, C->, C-' mappings
+  (eyebrowse-setup-evil-keys)
+  (define-key eyebrowse-mode-map (kbd "C-\"") 'eyebrowse-close-window-config)
+  (define-key eyebrowse-mode-map (kbd "M-0") 'eyebrowse-switch-to-window-config-0)
+  (define-key eyebrowse-mode-map (kbd "M-1") 'eyebrowse-switch-to-window-config-1)
+  (define-key eyebrowse-mode-map (kbd "M-2") 'eyebrowse-switch-to-window-config-2)
+  (define-key eyebrowse-mode-map (kbd "M-3") 'eyebrowse-switch-to-window-config-3)
+  (define-key eyebrowse-mode-map (kbd "M-4") 'eyebrowse-switch-to-window-config-4)
+  (define-key eyebrowse-mode-map (kbd "M-5") 'eyebrowse-switch-to-window-config-5)
+  (define-key eyebrowse-mode-map (kbd "M-6") 'eyebrowse-switch-to-window-config-6)
+  (define-key eyebrowse-mode-map (kbd "M-7") 'eyebrowse-switch-to-window-config-7)
+  (define-key eyebrowse-mode-map (kbd "M-8") 'eyebrowse-switch-to-window-config-8)
+  (define-key eyebrowse-mode-map (kbd "M-9") 'eyebrowse-switch-to-window-config-9))
 
 (column-number-mode)
 
