@@ -479,6 +479,10 @@ my-ensured-packages."
   (my-use-package evil-magit
     :ensure t))
 
+(my-use-package antlr-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.g4\\'" . antlr-mode)))
+
 (my-use-package asm-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.fasm?\\'" . asm-mode)))
