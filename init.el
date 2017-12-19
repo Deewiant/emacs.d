@@ -40,6 +40,9 @@ my-ensured-packages."
   :config
   (savehist-mode 1))
 
+(my-use-package diminish
+  :ensure t)
+
 (my-use-package evil
   :ensure t
   :diminish undo-tree-mode
