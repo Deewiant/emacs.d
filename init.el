@@ -469,9 +469,10 @@ my-ensured-packages."
   :bind ("C-x g" . magit-status)
   :bind ("C-x M-g" . magit-dispatch-popup)
   :bind ("C-x f" . magit-file-popup)
+  :init
+  (setq vc-handled-backends (delq 'Git vc-handled-backends))
   :config
   (setq git-commit-summary-max-length 50)
-  (setq vc-handled-backends (delq 'Git vc-handled-backends))
 
   (magit-change-popup-key 'magit-blame-popup :action ?b ?l)
 
