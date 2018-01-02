@@ -674,7 +674,7 @@ my-ensured-packages."
          :map ensime-mode-map
               ("C-c m E" . ensime-reload))
   :init
-  (add-hook 'ensime-mode-hook #'(lambda () (setq current-prefix-arg '(-1)) (call-interactively #'yas-minor-mode)))
+  (add-hook 'ensime-mode-hook #'(lambda () (yas-minor-mode -1)))
   :config
   (setq ensime-startup-notification nil)
   ; Disabled because it doesn't actually work properly.
