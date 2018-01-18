@@ -566,6 +566,16 @@ my-ensured-packages."
   :ensure t
   :commands glsl-mode)
 
+(my-use-package go-mode
+  :ensure t
+  :commands go-mode
+  :config
+  (my-use-package company-go
+    :ensure t
+    :defer t
+    :init
+    (add-to-list 'company-backends 'company-go)))
+
 (my-use-package groovy-mode
   :ensure t
   :commands groovy-mode)
