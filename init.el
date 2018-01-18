@@ -296,7 +296,7 @@ my-ensured-packages."
     :bind ("C-h f" . counsel-describe-function)
     :bind ("C-h v" . counsel-describe-variable)
     :bind (:map minibuffer-local-map
-           ("C-s" . counsel-expression-history)))
+           ("C-s" . counsel-minibuffer-history)))
   (my-use-package ivy-hydra
     :ensure t)
   (my-use-package swiper
@@ -325,7 +325,7 @@ my-ensured-packages."
   :bind ("C-h a" . helm-apropos)
   :config
   (use-package grep)
-  (setq helm-split-window-in-side-p t)
+  (setq helm-split-window-inside-p t)
   (push '("^\\*[Hh]elm.+\\*$" :regexp t :height 15)
         popwin:special-display-config))
 
@@ -342,7 +342,7 @@ my-ensured-packages."
     :config
     (setq projectile-completion-system 'ivy)
     (define-key projectile-command-map (kbd "s s") #'counsel-projectile-rg))
-  (projectile-global-mode))
+  (projectile-mode))
 
 (my-use-package flycheck
   :ensure t
@@ -594,7 +594,6 @@ my-ensured-packages."
   (my-use-package haskell-process)
   (my-use-package haskell-indentation
     :config
-    (setq haskell-indentation-ifte-offset 3)
     (setq haskell-indentation-layout-offset 3)
     (setq haskell-indentation-left-offset 3)
     (setq haskell-indentation-starter-offset 3)
