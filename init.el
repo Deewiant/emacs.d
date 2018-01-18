@@ -574,7 +574,12 @@ my-ensured-packages."
     :ensure t
     :defer t
     :init
-    (add-to-list 'company-backends 'company-go)))
+    (add-to-list 'company-backends 'company-go))
+  (my-use-package go-eldoc
+    :ensure t
+    :commands go-eldoc-setup
+    :init
+    (add-hook 'go-mode-hook 'go-eldoc-setup)))
 
 (my-use-package groovy-mode
   :ensure t
