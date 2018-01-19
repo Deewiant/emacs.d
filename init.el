@@ -570,6 +570,9 @@ my-ensured-packages."
   :ensure t
   :commands go-mode
   :config
+  (defun my-add-gofmt-before-save-hook ()
+    (add-hook 'before-save-hook #'gofmt-before-save))
+  (add-hook 'go-mode-hook #'my-add-gofmt-before-save-hook)
   (my-use-package company-go
     :ensure t
     :defer t
