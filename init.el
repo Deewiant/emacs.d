@@ -682,6 +682,11 @@ my-ensured-packages."
     :commands cargo-minor-mode
     :init
     (add-hook 'rust-mode-hook #'cargo-minor-mode))
+  (my-use-package flycheck-rust
+    :ensure t
+    :commands flycheck-rust-setup
+    :init
+    (add-hook 'rust-mode-hook #'flycheck-rust-setup))
   (setq rust-format-on-save t))
 
 (my-use-package ensime
