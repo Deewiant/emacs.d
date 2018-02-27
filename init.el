@@ -79,6 +79,10 @@ my-ensured-packages."
     :config
     (global-evil-surround-mode 1))
 
+  ; This isn't an evil-mode setting, but it's here to match Vim: you need to
+  ; explicitly specify "+ if you want something there.
+  (setq select-enable-clipboard nil)
+
   ; When closing split windows, return to the window we split from instead of
   ; some seemingly unpredictable choice.
   (defvar my-window-parents)
