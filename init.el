@@ -730,7 +730,15 @@ my-ensured-packages."
     (tide-setup)
     (tide-hl-identifier-mode)
     (add-hook 'before-save-hook #'tide-format-before-save nil t))
-  (add-hook 'typescript-mode-hook #'my-start-tide-mode))
+  (add-hook 'typescript-mode-hook #'my-start-tide-mode)
+
+  :config
+  (defun my-tide-jump-to-definition (&optional arg)
+    "Like tide-jump-to-definition, but set jump point for Evil."
+    (interactive "P")
+    (evil-set-jump)
+    (tide-jump-to-definition arg))
+  (evil-define-key* 'normal typescript-mode-map (kbd "C-]") #'my-tide-jump-to-definition))
 
 (my-use-package yaml-mode
   :ensure t
