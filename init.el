@@ -750,6 +750,15 @@ my-ensured-packages."
   :init
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.jinja\\'" . web-mode))
+
+  (add-to-list 'auto-mode-alist '("\\.[jt]sx\\'" . web-mode))
+  (defun my-start-tide-mode-for-jsx-tsx ()
+    (let ((ext (file-name-extension buffer-file-name)))
+      (when (or (string-equal "tsx" ext) (string-equal "jsx" ext))
+        (my-start-tide-mode))))
+  (flycheck-add-mode 'typescript-tslint 'web-mode)
+  (add-hook 'web-mode-hook #'my-start-tide-mode-for-jsx-tsx)
+
   (push 'web-mode-code-indent-offset safe-local-variable-values)
   (push 'web-mode-script-padding safe-local-variable-values)
   :config
