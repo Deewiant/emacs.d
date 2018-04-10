@@ -720,9 +720,17 @@ my-ensured-packages."
   :ensure t
   :commands tup-mode)
 
-(my-use-package typescript-mode
+(my-use-package tide
   :ensure t
-  :commands typescript-mode)
+  :commands tide-setup
+  :diminish tide-mode
+  :init
+  (defun my-start-tide-mode ()
+    (interactive)
+    (tide-setup)
+    (tide-hl-identifier-mode)
+    (add-hook 'before-save-hook #'tide-format-before-save nil t))
+  (add-hook 'typescript-mode-hook #'my-start-tide-mode))
 
 (my-use-package yaml-mode
   :ensure t
