@@ -576,7 +576,7 @@ my-ensured-packages."
   :config
   (setq gofmt-command "goimports")
   (defun my-add-gofmt-before-save-hook ()
-    (add-hook 'before-save-hook #'gofmt-before-save))
+    (add-hook 'before-save-hook #'gofmt-before-save nil t))
   (add-hook 'go-mode-hook #'my-add-gofmt-before-save-hook)
   (my-use-package company-go
     :ensure t
