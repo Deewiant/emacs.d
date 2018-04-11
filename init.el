@@ -729,7 +729,9 @@ my-ensured-packages."
     (interactive)
     (tide-setup)
     (tide-hl-identifier-mode)
-    (add-hook 'before-save-hook #'tide-format-before-save nil t))
+    (add-hook 'before-save-hook #'tide-format-before-save nil t)
+    (setq-local typescript-indent-level (or (plist-get (tide-tsfmt-options) ':indentSize)
+                                            typescript-indent-level)))
   (add-hook 'typescript-mode-hook #'my-start-tide-mode)
 
   :config
