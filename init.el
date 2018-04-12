@@ -172,8 +172,11 @@ my-ensured-packages."
   (eyebrowse-mode t)
   (setq eyebrowse-wrap-around t)
   (setq eyebrowse-new-workspace t)
-  ; eyebrowse-setup-opinionated-keys minus the C-<, C->, C-' mappings
-  (eyebrowse-setup-evil-keys)
+  ; eyebrowse-setup-opinionated-keys minus the C-<, C->, C-' mappings. Also,
+  ; don't override evil-commentary's mappings in visual state, we only use the
+  ; tab mappings in normal state anyway.
+  (let ((evil-motion-state-map evil-normal-state-map))
+    (eyebrowse-setup-evil-keys))
   (define-key eyebrowse-mode-map (kbd "C-\"") 'eyebrowse-close-window-config)
   (define-key eyebrowse-mode-map (kbd "M-0") 'eyebrowse-switch-to-window-config-0)
   (define-key eyebrowse-mode-map (kbd "M-1") 'eyebrowse-switch-to-window-config-1)
