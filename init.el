@@ -725,11 +725,16 @@ my-ensured-packages."
   :commands tide-setup
   :diminish tide-mode
   :init
+  (my-use-package prettier-js
+    :ensure t
+    :diminish prettier-js-mode
+    :commands prettier-js-mode)
+
   (defun my-start-tide-mode ()
     (interactive)
     (tide-setup)
     (tide-hl-identifier-mode)
-    (add-hook 'before-save-hook #'tide-format-before-save nil t)
+    (prettier-js-mode)
     (setq-local typescript-indent-level (or (plist-get (tide-tsfmt-options) ':indentSize)
                                             typescript-indent-level)))
   (add-hook 'typescript-mode-hook #'my-start-tide-mode)
