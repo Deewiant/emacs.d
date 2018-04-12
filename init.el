@@ -757,7 +757,9 @@ my-ensured-packages."
   (defun my-start-tide-mode-for-jsx-tsx ()
     (let ((ext (file-name-extension buffer-file-name)))
       (if (or (string-equal "tsx" ext) (string-equal "jsx" ext))
-        (my-start-tide-mode)
+        (progn
+          (my-start-tide-mode)
+          (setq-local web-mode-code-indent-offset typescript-indent-level))
         (add-to-list 'flycheck-disabled-checkers 'typescript-tslint))))
   (flycheck-add-mode 'typescript-tslint 'web-mode)
   (add-hook 'web-mode-hook #'my-start-tide-mode-for-jsx-tsx)
