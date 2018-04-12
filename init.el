@@ -757,16 +757,27 @@ my-ensured-packages."
   :ensure t
   :commands web-mode
   :init
+  (my-use-package emmet-mode
+    :ensure t
+    :commands emmet-mode
+    :diminish emmet-mode
+    :init
+    (add-hook 'sgml-mode-hook #'emmet-mode)
+    (add-hook 'css-mode-hook #'emmet-mode)
+    (add-hook 'web-mode-hook #'emmet-mode))
+
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.jinja\\'" . web-mode))
 
   (add-to-list 'auto-mode-alist '("\\.[jt]sx\\'" . web-mode))
   (defun my-start-tide-mode-for-jsx-tsx ()
+    (interactive)
     (let ((ext (file-name-extension buffer-file-name)))
       (if (or (string-equal "tsx" ext) (string-equal "jsx" ext))
         (progn
           (my-start-tide-mode)
-          (setq-local web-mode-code-indent-offset typescript-indent-level))
+          (setq-local web-mode-code-indent-offset typescript-indent-level)
+          (setq-local emmet-expand-jsx-className? t))
         (add-to-list 'flycheck-disabled-checkers 'typescript-tslint))))
   (flycheck-add-mode 'typescript-tslint 'web-mode)
   (add-hook 'web-mode-hook #'my-start-tide-mode-for-jsx-tsx)
