@@ -730,22 +730,21 @@ my-ensured-packages."
     :diminish prettier-js-mode
     :commands prettier-js-mode)
 
+  (defun my-tide-jump-to-definition (&optional arg)
+    "Like tide-jump-to-definition, but set jump point for Evil."
+    (interactive "P")
+    (evil-set-jump)
+    (tide-jump-to-definition arg))
+
   (defun my-start-tide-mode ()
     (interactive)
     (tide-setup)
     (tide-hl-identifier-mode)
     (prettier-js-mode)
     (setq-local typescript-indent-level (or (plist-get (tide-tsfmt-options) ':indentSize)
-                                            typescript-indent-level)))
-  (add-hook 'typescript-mode-hook #'my-start-tide-mode)
-
-  :config
-  (defun my-tide-jump-to-definition (&optional arg)
-    "Like tide-jump-to-definition, but set jump point for Evil."
-    (interactive "P")
-    (evil-set-jump)
-    (tide-jump-to-definition arg))
-  (evil-define-key* 'normal typescript-mode-map (kbd "C-]") #'my-tide-jump-to-definition))
+                                            typescript-indent-level))
+    (evil-local-set-key 'normal (kbd "C-]") #'my-tide-jump-to-definition))
+  (add-hook 'typescript-mode-hook #'my-start-tide-mode))
 
 (my-use-package yaml-mode
   :ensure t
