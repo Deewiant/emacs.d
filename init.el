@@ -777,6 +777,7 @@ my-ensured-packages."
         (progn
           (my-start-tide-mode)
           (setq-local web-mode-code-indent-offset typescript-indent-level)
+          (setq-local web-mode-markup-indent-offset typescript-indent-level)
           (setq-local emmet-expand-jsx-className? t))
         (add-to-list 'flycheck-disabled-checkers 'typescript-tslint))))
   (flycheck-add-mode 'typescript-tslint 'web-mode)
