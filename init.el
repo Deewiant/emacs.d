@@ -364,6 +364,11 @@ my-ensured-packages."
   (put 'flycheck-gcc-args 'safe-local-variable
        (lambda (xs) (cl-every #'my-safe-gcc-arg-p xs)))
   :config
+  ; See https://github.com/flycheck/flycheck/issues/1446#issuecomment-381096987
+  ; and follow-ups.
+  (setcar (memq 'source-inplace (flycheck-checker-get 'typescript-tslint 'command))
+          'source-original)
+
   (my-use-package flycheck-pos-tip
     :ensure t
     :config
