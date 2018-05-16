@@ -401,6 +401,11 @@ my-ensured-packages."
 (c-add-style "deewiant" '("k&r" (c-basic-offset . 3)))
 (setq-default c-default-style "deewiant")
 
+(use-package browse-url
+  :config
+  (setq browse-url-firefox-program "firefox-beta")
+  (setq browse-url-browser-function #'browse-url-firefox))
+
 (my-use-package company
   :ensure t
   :diminish company-mode
