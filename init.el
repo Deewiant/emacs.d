@@ -261,12 +261,16 @@ my-ensured-packages."
   :init
   (my-use-package counsel
     :ensure t
-    :bind ("M-x" . counsel-M-x)
+    :bind ("M-x" . my-M-x)
     :bind ("C-c f" . counsel-recentf)
     :bind ("C-h f" . counsel-describe-function)
     :bind ("C-h v" . counsel-describe-variable)
     :bind (:map minibuffer-local-map
-           ("C-s" . counsel-minibuffer-history)))
+           ("C-s" . counsel-minibuffer-history))
+    :init
+    (defun my-M-x ()
+      (interactive)
+      (counsel-M-x ""))) ; Don't start with "^"
   (my-use-package ivy-hydra
     :ensure t)
   (my-use-package swiper
