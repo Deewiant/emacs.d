@@ -803,6 +803,8 @@ my-ensured-packages."
                (cond
                 ((string-match "Git[:-]" vc-mode) (my-mode-line-vc-git))
                 (t (format "%s" vc-mode)))))))
+
+  (setq mode-line-percent-position '("%7q"))
   (setq-default mode-line-format
     (list " "
           mode-line-mule-info
