@@ -190,6 +190,7 @@ my-ensured-packages."
   (define-key eyebrowse-mode-map (kbd "M-9") 'eyebrowse-switch-to-window-config-9))
 
 (column-number-mode)
+(setq column-number-indicator-zero-based nil)
 (setq-default display-line-numbers 'relative)
 (show-paren-mode 1)
 
