@@ -190,31 +190,7 @@ my-ensured-packages."
   (define-key eyebrowse-mode-map (kbd "M-9") 'eyebrowse-switch-to-window-config-9))
 
 (column-number-mode)
-
-(my-use-package linum-relative
-  :ensure t
-  :diminish linum-relative-mode
-  :config
-  ; Update line numbers only after a delay. Rewrite linum-schedule to use a
-  ; proper timer instead of a 0-delay one and linum-after-scroll to not do an
-  ; immediate update.
-  (setq linum-delay t)
-  (defvar-local my-linum-current-timer nil)
-  (defun linum-schedule ()
-    (when (timerp my-linum-current-timer)
-      (cancel-timer my-linum-current-timer))
-    (setq my-linum-current-timer
-          (run-with-idle-timer 0.2 nil #'linum-update-current)))
-  (defun linum-after-scroll (_win _start) ())
-
-  (setq linum-relative-current-symbol "")
-  (global-linum-mode 1)
-  (linum-relative-mode 1)
-
-  ; Some themes see fit to override linum-format, breaking linum-relative, so
-  ; make sure they fail.
-  (customize-set-variable 'linum-format linum-format))
-
+(setq-default display-line-numbers 'relative)
 (show-paren-mode 1)
 
 (my-use-package highlight-escape-sequences
