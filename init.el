@@ -221,8 +221,8 @@ my-ensured-packages."
   (dtrt-indent-mode 1))
 
 (my-use-package editorconfig
-  :diminish editorconfig-mode
   :ensure t
+  :diminish editorconfig-mode
   :config
   (editorconfig-mode 1))
 
@@ -230,19 +230,6 @@ my-ensured-packages."
   :ensure t
   :diminish ws-butler-mode
   :config
-  (defun ws-butler-clean-region (beg end)
-    "Delete trailing blanks in region BEG END. Don't touch indentation."
-    (interactive "*r")
-    (ws-butler-with-save
-     (narrow-to-region beg end)
-     ;;  _much slower would be:       (replace-regexp "[ \t]+$" "")
-     (goto-char (point-min))
-     (while (not (eobp))
-       (end-of-line)
-       (delete-horizontal-space)
-       (forward-line 1)))
-    ;; clean return code for hooks
-    nil)
   (ws-butler-global-mode))
 
 (my-use-package which-key
