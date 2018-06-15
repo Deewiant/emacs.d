@@ -46,6 +46,10 @@ my-ensured-packages."
 (my-use-package evil
   :ensure t
   :diminish undo-tree-mode
+  :init
+  ; evil-collection replaces this.
+  (setq evil-want-integration nil)
+
   :config
   ; Wants to be enabled before evil-mode itself.
   (my-use-package evil-leader
@@ -54,6 +58,11 @@ my-ensured-packages."
     (global-evil-leader-mode))
 
   (evil-mode 1)
+
+  (my-use-package evil-collection
+    :ensure t
+    :config
+    (evil-collection-init))
 
   (my-use-package evil-commentary
     :ensure t
