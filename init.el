@@ -76,6 +76,14 @@ my-ensured-packages."
     :config
     (evil-commentary-mode))
 
+  (my-use-package evil-goggles
+    :ensure t
+    :diminish evil-goggles-mode
+    :config
+    (setq evil-goggles-blocking-duration 0.100)
+    (setq evil-goggles-async-duration 0.400)
+    (evil-goggles-mode))
+
   (my-use-package evil-snipe
     :ensure t
     :diminish evil-snipe-local-mode
