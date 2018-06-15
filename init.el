@@ -59,6 +59,12 @@ my-ensured-packages."
 
   (evil-mode 1)
 
+  (my-use-package evil-args
+    :ensure t
+    :config
+    (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
+    (define-key evil-outer-text-objects-map "a" 'evil-outer-arg))
+
   (my-use-package evil-collection
     :ensure t
     :config
