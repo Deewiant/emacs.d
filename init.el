@@ -68,7 +68,8 @@ my-ensured-packages."
   (my-use-package evil-collection
     :ensure t
     :config
-    (evil-collection-init))
+    ; Remove diff-mode due to https://github.com/emacs-evil/evil-collection/issues/156
+    (evil-collection-init (remq 'diff-mode evil-collection-mode-list)))
 
   (my-use-package evil-commentary
     :ensure t
