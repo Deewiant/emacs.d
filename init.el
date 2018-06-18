@@ -716,6 +716,10 @@ my-ensured-packages."
   (evil-define-key* 'normal ensime-mode-map (kbd "C-]") #'ensime-edit-definition)
   (set-face-underline 'ensime-implicit-highlight nil))
 
+(my-use-package toml-mode
+  :ensure t
+  :commands toml-mode)
+
 (my-use-package tup-mode
   :ensure t
   :commands tup-mode)
