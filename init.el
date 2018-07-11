@@ -291,6 +291,7 @@ my-ensured-packages."
     :bind ("C-h v" . counsel-describe-variable)
     :bind (:map minibuffer-local-map
            ("C-s" . counsel-minibuffer-history))
+    :bind ("C-x C-f" . counsel-find-file)
     :init
     (defun my-M-x ()
       (interactive)
