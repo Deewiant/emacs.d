@@ -508,8 +508,11 @@ my-ensured-packages."
   (defun my-add-clang-format-hook-hook ()
     (when (memq major-mode '(c-mode c++-mode))
       (add-hook 'before-save-hook #'my-clang-format-hook nil t)))
-  (add-hook 'c-mode-hook #'my-add-clang-format-hook-hook)
-  (add-hook 'c++-mode-hook #'my-add-clang-format-hook-hook))
+  ; Don't do this automatically everywhere. Formatting is so nonstandard in
+  ; C/C++ land that this just makes drive-by changes to others' code painful.
+  ; (add-hook 'c-mode-hook #'my-add-clang-format-hook-hook)
+  ; (add-hook 'c++-mode-hook #'my-add-clang-format-hook-hook)
+  )
 
 ; Note: will fail if .clang-tidy file does not exist (can be empty to
 ; effectively disable the checker)
