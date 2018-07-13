@@ -643,6 +643,10 @@ my-ensured-packages."
 ;  :ensure t
 ;  :commands llvm-mode)
 
+(my-use-package lua-mode
+  :ensure t
+  :commands lua-mode)
+
 (my-use-package markdown-mode
   :ensure t
   :commands markdown-mode)
