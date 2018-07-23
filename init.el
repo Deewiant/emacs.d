@@ -340,7 +340,16 @@ my-ensured-packages."
     :ensure t
     :config
     (setq projectile-completion-system 'ivy)
-    (define-key projectile-command-map (kbd "s s") #'counsel-projectile-rg))
+    (define-key projectile-command-map (kbd "s s") #'counsel-projectile-rg)
+
+    ; This doesn't belong here as such, but using a similar key binding to
+    ; counsel-projectile-rg is very mnemonic.
+    (defun my-counsel-curdir-rg
+        (&optional initial-input extra-rg-args rg-prompt)
+      (interactive)
+      (counsel-rg initial-input default-directory extra-rg-args rg-prompt))
+    (define-key projectile-command-map (kbd "s .") #'my-counsel-curdir-rg))
+
   (projectile-mode))
 
 (my-use-package flycheck
