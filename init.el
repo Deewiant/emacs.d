@@ -513,16 +513,27 @@ my-ensured-packages."
   :ensure t
   :commands clang-format clang-format-buffer clang-format-region
   :init
-  (defun my-clang-format-hook ()
-    (clang-format-buffer))
-  (defun my-add-clang-format-hook-hook ()
+
+  ; Thanks to https://eklitzke.org/smarter-emacs-clang-format for this idea.
+  (with-no-warnings
+    (defvar-local my-dot-clang-format-dir 'unset))
+  (defun my-clang-format-buffer-smart ()
+    (interactive)
+    (when (eq my-dot-clang-format-dir 'unset)
+      (setq-local my-dot-clang-format-dir
+                      (locate-dominating-file
+                       (or buffer-file-name default-directory)
+                       ".clang-format")))
+    (if my-dot-clang-format-dir
+        (clang-format-buffer)
+      (when (called-interactively-p 'interactive)
+        (message ".clang-format not found, so nothing done"))))
+
+  (defun my-clang-format-buffer-smart-on-save ()
     (when (memq major-mode '(c-mode c++-mode))
-      (add-hook 'before-save-hook #'my-clang-format-hook nil t)))
-  ; Don't do this automatically everywhere. Formatting is so nonstandard in
-  ; C/C++ land that this just makes drive-by changes to others' code painful.
-  ; (add-hook 'c-mode-hook #'my-add-clang-format-hook-hook)
-  ; (add-hook 'c++-mode-hook #'my-add-clang-format-hook-hook)
-  )
+      (add-hook 'before-save-hook #'my-clang-format-buffer-smart nil t)))
+  (add-hook 'c-mode-hook #'my-clang-format-buffer-smart-on-save)
+  (add-hook 'c++-mode-hook #'my-clang-format-buffer-smart-on-save))
 
 ; Note: will fail if .clang-tidy file does not exist (can be empty to
 ; effectively disable the checker)
