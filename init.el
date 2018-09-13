@@ -577,6 +577,16 @@ my-ensured-packages."
     (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
     (add-to-list 'company-backends 'company-irony)))
 
+(my-use-package smart-dash
+  :ensure t
+  :commands smart-dash-mode
+  :init
+  (defun my-smart-dash-enable ()
+    (when (memq major-mode '(c-mode c++-mode))
+      (smart-dash-mode)))
+  (add-hook 'c-mode-hook #'my-smart-dash-enable)
+  (add-hook 'c++-mode-hook #'my-smart-dash-enable))
+
 (my-use-package clojure-mode
   :ensure t
   :commands clojure-mode)
