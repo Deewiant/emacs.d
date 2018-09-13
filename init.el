@@ -48,7 +48,7 @@ my-ensured-packages."
   :diminish undo-tree-mode
   :init
   ; evil-collection replaces this.
-  (setq evil-want-integration nil)
+  (setq evil-want-keybinding nil)
 
   :config
   ; Wants to be enabled before evil-mode itself.
