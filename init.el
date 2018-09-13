@@ -43,6 +43,11 @@ my-ensured-packages."
 (my-use-package diminish
   :ensure t)
 
+(my-use-package general
+  :ensure t
+  :config
+  (general-evil-setup))
+
 (my-use-package evil
   :ensure t
   :diminish undo-tree-mode
@@ -51,12 +56,6 @@ my-ensured-packages."
   (setq evil-want-keybinding nil)
 
   :config
-  ; Wants to be enabled before evil-mode itself.
-  (my-use-package evil-leader
-    :ensure t
-    :config
-    (global-evil-leader-mode))
-
   (evil-mode 1)
 
   (my-use-package evil-args
