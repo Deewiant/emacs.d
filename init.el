@@ -158,7 +158,10 @@ my-ensured-packages."
 
   (define-key evil-normal-state-map "~" 'evil-invert-case)
   (define-key evil-normal-state-map "Y" 'yank-to-eol)
-  (define-key evil-insert-state-map (kbd "RET") 'comment-indent-new-line))
+  (define-key evil-insert-state-map (kbd "RET") 'comment-indent-new-line)
+
+  ; Better file completion for :e.
+  (define-key evil-ex-map "e " #'counsel-find-file))
 
 (my-use-package crux
   :ensure t
