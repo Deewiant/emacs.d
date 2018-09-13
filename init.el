@@ -55,6 +55,8 @@ my-ensured-packages."
   ; evil-collection replaces this.
   (setq evil-want-keybinding nil)
 
+  (defvar evil-want-Y-yank-to-eol t)
+
   :config
   (evil-mode 1)
 
@@ -157,7 +159,6 @@ my-ensured-packages."
   (define-key minibuffer-local-map "\C-r" #'evil-paste-from-register)
 
   (define-key evil-normal-state-map "~" 'evil-invert-case)
-  (define-key evil-normal-state-map "Y" 'yank-to-eol)
   (define-key evil-insert-state-map (kbd "RET") 'comment-indent-new-line)
 
   ; Better file completion for :e.
