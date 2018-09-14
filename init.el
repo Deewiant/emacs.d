@@ -91,6 +91,7 @@ my-ensured-packages."
     :diminish evil-snipe-local-mode
     :config
     (evil-snipe-mode 1)
+    (evil-snipe-override-mode 1)
     ; Don't consider evil-snipe's ; and , for repeating with . (dot).
     (evil-declare-ignore-repeat 'evil-snipe-repeat)
     (evil-declare-ignore-repeat 'evil-snipe-repeat-reverse)
