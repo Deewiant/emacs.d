@@ -241,10 +241,9 @@ my-ensured-packages."
 (my-use-package hideshow
   :diminish hs-minor-mode
   :config
-  (add-hook 'python-mode-hook #'hs-minor-mode)
-  (add-hook 'c-mode-hook #'hs-minor-mode)
-  (add-hook 'c++-mode-hook #'hs-minor-mode)
-  (add-hook 'java-mode-hook #'hs-minor-mode))
+  (general-add-hook
+   '(python-mode-hook c-mode-hook c++-mode-hook java-mode-hook)
+   #'hs-minor-mode))
 
 (my-use-package dtrt-indent
   :ensure t
@@ -539,8 +538,8 @@ my-ensured-packages."
   (defun my-clang-format-buffer-smart-on-save ()
     (when (memq major-mode '(c-mode c++-mode))
       (add-hook 'before-save-hook #'my-clang-format-buffer-smart nil t)))
-  (add-hook 'c-mode-hook #'my-clang-format-buffer-smart-on-save)
-  (add-hook 'c++-mode-hook #'my-clang-format-buffer-smart-on-save))
+  (general-add-hook '(c-mode-hook c++-mode-hook)
+                    #'my-clang-format-buffer-smart-on-save))
 
 ; Note: will fail if .clang-tidy file does not exist (can be empty to
 ; effectively disable the checker)
@@ -562,9 +561,8 @@ my-ensured-packages."
     (when (memq major-mode '(c-mode c++-mode objc-mode))
       (irony-mode 1)))
   (add-hook 'c-mode-common-hook (lambda () (abbrev-mode -1)))
-  (add-hook 'c-mode-hook 'my-irony-mode-enable)
-  (add-hook 'c++-mode-hook 'my-irony-mode-enable)
-  (add-hook 'objc-mode-hook 'my-irony-mode-enable)
+  (general-add-hook '(c-mode-hook c++-mode-hook objc-mode-hook)
+                    #'my-irony-mode-enable)
   :config
   (define-key irony-mode-map [remap completion-at-point]
     'irony-completion-at-point-async)
@@ -585,8 +583,7 @@ my-ensured-packages."
   (defun my-smart-dash-enable ()
     (when (memq major-mode '(c-mode c++-mode))
       (smart-dash-mode)))
-  (add-hook 'c-mode-hook #'my-smart-dash-enable)
-  (add-hook 'c++-mode-hook #'my-smart-dash-enable))
+  (general-add-hook '(c-mode-hook c++-mode-hook) #'my-smart-dash-enable))
 
 (my-use-package clojure-mode
   :ensure t
@@ -810,9 +807,7 @@ my-ensured-packages."
     :commands emmet-mode
     :diminish emmet-mode
     :init
-    (add-hook 'sgml-mode-hook #'emmet-mode)
-    (add-hook 'css-mode-hook #'emmet-mode)
-    (add-hook 'web-mode-hook #'emmet-mode))
+    (general-add-hook '(sgml-mode-hook css-mode-hook web-mode-hook) #'emmet-mode))
 
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.jinja\\'" . web-mode))
