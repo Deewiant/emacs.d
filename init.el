@@ -46,14 +46,15 @@ my-ensured-packages."
 (my-use-package general
   :ensure t
   :config
-  (general-evil-setup))
+  (general-evil-setup)
+  (defalias 'gsetq #'general-setq))
 
 (my-use-package evil
   :ensure t
   :diminish undo-tree-mode
   :init
   ; evil-collection replaces this.
-  (setq evil-want-keybinding nil)
+  (gsetq evil-want-keybinding nil)
 
   (defvar evil-want-Y-yank-to-eol t)
 
@@ -81,8 +82,8 @@ my-ensured-packages."
     :ensure t
     :diminish evil-goggles-mode
     :config
-    (setq evil-goggles-blocking-duration 0.100)
-    (setq evil-goggles-async-duration 0.400)
+    (gsetq evil-goggles-blocking-duration 0.100
+           evil-goggles-async-duration 0.400)
     (evil-goggles-mode))
 
   (my-use-package evil-snipe
@@ -93,10 +94,10 @@ my-ensured-packages."
     ; Don't consider evil-snipe's ; and , for repeating with . (dot).
     (evil-declare-ignore-repeat 'evil-snipe-repeat)
     (evil-declare-ignore-repeat 'evil-snipe-repeat-reverse)
-    (setq evil-snipe-scope 'visible)
-    (setq evil-snipe-repeat-scope 'whole-buffer)
+    (gsetq evil-snipe-scope 'visible
+           evil-snipe-repeat-scope 'whole-buffer)
     ; Don't repeat search on another press of s/S.
-    (setq evil-snipe-repeat-keys nil))
+    (gsetq evil-snipe-repeat-keys nil))
 
   (my-use-package evil-surround
     :ensure t
@@ -105,12 +106,11 @@ my-ensured-packages."
 
   ; This isn't an evil-mode setting, but it's here to match Vim: you need to
   ; explicitly specify "+ if you want something there.
-  (setq select-enable-clipboard nil)
+  (gsetq select-enable-clipboard nil)
 
   ; When closing split windows, return to the window we split from instead of
   ; some seemingly unpredictable choice.
-  (defvar my-window-parents)
-  (setq my-window-parents nil)
+  (defvar my-window-parents nil)
   (defun my-save-window-next-parent-function (split &rest args)
     (my-save-window-parent-function #'next-window split args))
   (defun my-save-window-prev-parent-function (split &rest args)
@@ -143,9 +143,9 @@ my-ensured-packages."
   (advice-add 'evil-window-delete
               :around #'my-restore-window-parent-function)
 
-  (setq evil-auto-balance-windows nil)
+  (gsetq evil-auto-balance-windows nil
+         evil-vsplit-window-right 1)
   (setq-default evil-symbol-word-search t)
-  (setq evil-vsplit-window-right 1)
 
   (defun yank-to-eol ()
     (interactive)
@@ -200,8 +200,8 @@ my-ensured-packages."
   :diminish eyebrowse-mode
   :config
   (eyebrowse-mode t)
-  (setq eyebrowse-wrap-around t)
-  (setq eyebrowse-new-workspace t)
+  (gsetq eyebrowse-wrap-around t
+         eyebrowse-new-workspace t)
   ; eyebrowse-setup-opinionated-keys minus the C-<, C->, C-' mappings. Also,
   ; don't override evil-commentary's mappings in visual state, we only use the
   ; tab mappings in normal state anyway.
@@ -220,7 +220,7 @@ my-ensured-packages."
   (define-key eyebrowse-mode-map (kbd "M-9") 'eyebrowse-switch-to-window-config-9))
 
 (column-number-mode)
-(setq column-number-indicator-zero-based nil)
+(gsetq column-number-indicator-zero-based nil)
 (setq-default display-line-numbers 'relative)
 (show-paren-mode 1)
 
@@ -234,7 +234,7 @@ my-ensured-packages."
                        (and ?x (repeat 2 hex-digit))
                        (any "\"\'\\efnrtv$"))))))
     "Regexp to match PHP string escape sequences.")
-  (setq hes-mode-alist (cons `(php-mode . ,my-hes-php-re) hes-mode-alist))
+  (gsetq hes-mode-alist (cons `(php-mode . ,my-hes-php-re) hes-mode-alist))
   (hes-mode))
 
 ; More code folding support, Evil knows to use it if available.
@@ -273,7 +273,7 @@ my-ensured-packages."
 (my-use-package whitespace
   :init
   (add-hook 'whitespace-load-hook (lambda ()
-    (setq whitespace-style (delq 'lines whitespace-style)))))
+    (gsetq whitespace-style (delq 'lines whitespace-style)))))
 
 (my-use-package popwin
   :ensure t
@@ -331,7 +331,7 @@ my-ensured-packages."
   :bind ("C-h a" . helm-apropos)
   :config
   (use-package grep)
-  (setq helm-split-window-inside-p t)
+  (gsetq helm-split-window-inside-p t)
   (push '("^\\*[Hh]elm.+\\*$" :regexp t :height 15)
         popwin:special-display-config))
 
@@ -346,7 +346,7 @@ my-ensured-packages."
   (my-use-package counsel-projectile
     :ensure t
     :config
-    (setq projectile-completion-system 'ivy)
+    (gsetq projectile-completion-system 'ivy)
     (define-key projectile-command-map (kbd "s s") #'counsel-projectile-rg)
 
     ; This doesn't belong here as such, but using a similar key binding to
@@ -380,7 +380,7 @@ my-ensured-packages."
   (my-use-package flycheck-pos-tip
     :ensure t
     :config
-    (setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
+    (gsetq flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
   (my-use-package helm-flycheck
     :ensure t
     :commands helm-flycheck
@@ -396,12 +396,12 @@ my-ensured-packages."
   ; it first.)
   (flycheck-add-next-checker 'python-flake8 'python-pylint))
 
-(setq sentence-end-double-space nil)
+(gsetq sentence-end-double-space nil)
 
 (setq-default indent-tabs-mode nil)
-(setq standard-indent 3)
+(gsetq standard-indent 3)
 
-(setq backward-delete-char-untabify-method nil)
+(gsetq backward-delete-char-untabify-method nil)
 
 (setq-default fill-column 80)
 (add-hook 'python-mode-hook (lambda () (setq-local fill-column 79)))
@@ -411,8 +411,8 @@ my-ensured-packages."
 
 (use-package browse-url
   :config
-  (setq browse-url-firefox-program "firefox-beta")
-  (setq browse-url-browser-function #'browse-url-firefox))
+  (gsetq browse-url-firefox-program "firefox-beta"
+         browse-url-browser-function #'browse-url-firefox))
 
 (my-use-package company
   :ensure t
@@ -426,9 +426,9 @@ my-ensured-packages."
     :config
     ; This basically makes this equivalent to company-dabbrev-code, but without
     ; the "ignore things in comments and strings" feature.
-    (setq company-dabbrev-char-regexp "\\(?:\\sw\\|\\s_\\)")
-    (setq company-dabbrev-downcase nil)
-    (setq company-dabbrev-ignore-case t)
+    (gsetq company-dabbrev-char-regexp "\\(?:\\sw\\|\\s_\\)"
+           company-dabbrev-downcase nil
+           company-dabbrev-ignore-case t)
 
     ; Replace company-dabbrev-code (in the grouped backend containing it) with
     ; company-dabbrev, move everything after that backend to before it because
@@ -449,11 +449,11 @@ my-ensured-packages."
            (dabbrev-be2
             (cl-substitute 'company-dabbrev 'company-dabbrev-code dabbrev-be))
            (bes (append bes (list dabbrev-be2))))
-      (customize-set-variable 'company-backends bes)))
+      (gsetq company-backends bes)))
 
-  (setq company-idle-delay 0)
-  (setq company-minimum-prefix-length 2)
-  (setq company-show-numbers t)
+  (gsetq company-idle-delay 0
+         company-minimum-prefix-length 2
+         company-show-numbers t)
   (define-key evil-insert-state-map (kbd "C-x C-n") 'my-complete-simply)
   (define-key company-active-map (kbd "S-RET") 'comment-indent-new-line)
   (define-key company-active-map (kbd "S-<return>") 'comment-indent-new-line)
@@ -468,8 +468,8 @@ my-ensured-packages."
   :ensure t
   :diminish dumb-jump-mode
   :config
-  (setq dumb-jump-force-searcher 'rg)
-  (setq dumb-jump-selector 'ivy)
+  (gsetq dumb-jump-force-searcher 'rg
+         dumb-jump-selector 'ivy)
   (define-key evil-normal-state-map (kbd "C-]") 'dumb-jump-go)
   (define-key evil-normal-state-map (kbd "C-w C-]") 'dumb-jump-go-other-window)
   ; C-} = C-S-]
@@ -479,14 +479,14 @@ my-ensured-packages."
 (my-use-package ediff
   :defer t
   :config
-  (setq ediff-window-setup-function #'ediff-setup-windows-plain))
+  (gsetq ediff-window-setup-function #'ediff-setup-windows-plain))
 
 (my-use-package generic-x
   :config
-  (customize-set-variable
-   'generic-extras-enable-list
-   (append generic-default-modes generic-mswindows-modes generic-unix-modes
-           generic-other-modes)))
+  (gsetq
+    generic-extras-enable-list
+    (append generic-default-modes generic-mswindows-modes generic-unix-modes
+            generic-other-modes)))
 
 (my-use-package magit
   :ensure t
@@ -495,9 +495,9 @@ my-ensured-packages."
   :bind ("C-x M-g" . magit-dispatch-popup)
   :bind ("C-x f" . magit-file-popup)
   :init
-  (setq vc-handled-backends (delq 'Git vc-handled-backends))
+  (gsetq vc-handled-backends (delq 'Git vc-handled-backends))
   :config
-  (setq git-commit-summary-max-length 50)
+  (gsetq git-commit-summary-max-length 50)
 
   (magit-change-popup-key 'magit-blame-popup :action ?b ?l)
 
@@ -601,7 +601,7 @@ my-ensured-packages."
 
 (my-use-package dns-mode
   :config
-  (setq dns-mode-soa-auto-increment-serial nil))
+  (gsetq dns-mode-soa-auto-increment-serial nil))
 
 (my-use-package dockerfile-mode
   :ensure t
@@ -619,7 +619,7 @@ my-ensured-packages."
   :ensure t
   :commands go-mode
   :config
-  (setq gofmt-command "goimports")
+  (gsetq gofmt-command "goimports")
   (defun my-add-gofmt-before-save-hook ()
     (add-hook 'before-save-hook #'gofmt-before-save nil t))
   (add-hook 'go-mode-hook #'my-add-gofmt-before-save-hook)
@@ -652,11 +652,11 @@ my-ensured-packages."
   (my-use-package haskell-process)
   (my-use-package haskell-indentation
     :config
-    (setq haskell-indentation-layout-offset 3)
-    (setq haskell-indentation-left-offset 3)
-    (setq haskell-indentation-starter-offset 3)
-    (setq haskell-indentation-where-pre-offset 1)
-    (setq haskell-indentation-where-post-offset 2))
+    (gsetq haskell-indentation-layout-offset 3
+           haskell-indentation-left-offset 3
+           haskell-indentation-starter-offset 3
+           haskell-indentation-where-pre-offset 1
+           haskell-indentation-where-post-offset 2))
   (my-use-package flycheck-haskell
     :ensure t
     :config
@@ -672,7 +672,7 @@ my-ensured-packages."
   :init
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
   :config
-  (setq js2-mode-show-strict-warnings nil))
+  (gsetq js2-mode-show-strict-warnings nil))
 
 ; Removed from MELPA on 2018-01-28, see e.g.
 ; https://lists.llvm.org/pipermail/llvm-dev/2018-May/123171.html
@@ -693,7 +693,7 @@ my-ensured-packages."
   :commands php-mode
   :config
   ; Don't override tab width to 4, please.
-  (setq php-mode-coding-style 'default)
+  (gsetq php-mode-coding-style 'default)
 
   (add-hook 'php-mode-hook
             (lambda () (modify-syntax-entry ?$ "." php-mode-syntax-table)))
@@ -711,7 +711,7 @@ my-ensured-packages."
   (dolist (mod '(elpy-module-flymake
                  elpy-module-highlight-indentation
                  elpy-module-yasnippet))
-    (setq elpy-modules (delq mod elpy-modules)))
+    (gsetq elpy-modules (delq mod elpy-modules)))
   (define-key evil-normal-state-local-map (kbd "C-]") 'elpy-goto-definition))
 
 (my-use-package pyvenv
@@ -744,7 +744,7 @@ my-ensured-packages."
     :commands flycheck-rust-setup
     :init
     (add-hook 'rust-mode-hook #'flycheck-rust-setup))
-  (setq rust-format-on-save t))
+  (gsetq rust-format-on-save t))
 
 (my-use-package ensime
   :ensure t
@@ -757,9 +757,9 @@ my-ensured-packages."
   :init
   (add-hook 'ensime-mode-hook #'(lambda () (yas-minor-mode -1)))
   :config
-  (setq ensime-startup-notification nil)
+  (gsetq ensime-startup-notification nil)
   ; Disabled because it doesn't actually work properly.
-  ; (setq ensime-search-interface 'ivy)
+  ; (gsetq ensime-search-interface 'ivy)
   (evil-define-key* 'normal ensime-mode-map (kbd "C-]") #'ensime-edit-definition)
   (set-face-underline 'ensime-implicit-highlight nil))
 
@@ -834,27 +834,27 @@ my-ensured-packages."
   (push 'web-mode-code-indent-offset safe-local-variable-values)
   (push 'web-mode-script-padding safe-local-variable-values)
   :config
-  (setq web-mode-enable-auto-pairing nil)
-  (setq web-mode-enable-auto-quoting nil))
+  (gsetq web-mode-enable-auto-pairing nil
+         web-mode-enable-auto-quoting nil))
 
 ; Backup and auto-save into a global directory instead of next to the edited
 ; file, don't clobber hard links when backing up, delete old backups silently,
 ; and back up version controlled files as well.
 (let ((auto-save-dir (concat user-emacs-directory "auto-saves/")))
   (make-directory auto-save-dir t)
-  (setq backup-by-copying t
-        backup-directory-alist `(("." .
-                                  ,(concat user-emacs-directory "backups/")))
-        auto-save-file-name-transforms `((".*" ,auto-save-dir t))
-        delete-old-versions t
-        vc-make-backup-files t))
+  (gsetq backup-by-copying t
+         backup-directory-alist `(("." .
+                                   ,(concat user-emacs-directory "backups/")))
+         auto-save-file-name-transforms `((".*" ,auto-save-dir t))
+         delete-old-versions t
+         vc-make-backup-files t))
 
 ; The lock file directory is not settable so just disable locking.
-(setq create-lockfiles nil)
+(gsetq create-lockfiles nil)
 
 ; Write customizations into a separate file that we can manually look at if we
 ; want to.
-(setq custom-file (concat user-emacs-directory "customs.el"))
+(gsetq custom-file (concat user-emacs-directory "customs.el"))
 
 (my-use-package all-the-icons
   :ensure t
@@ -874,7 +874,7 @@ my-ensured-packages."
                 ((string-match "Git[:-]" vc-mode) (my-mode-line-vc-git))
                 (t (format "%s" vc-mode)))))))
 
-  (setq mode-line-percent-position '("%7q"))
+  (gsetq mode-line-percent-position '("%7q"))
   (setq-default mode-line-format
     (list " "
           mode-line-mule-info
@@ -896,22 +896,22 @@ my-ensured-packages."
 (my-use-package spacemacs-dark-theme
   :ensure spacemacs-theme)
 
-(setq blink-cursor-blinks 1)
-(setq echo-keystrokes 0.1)
-(setq window-min-height 2)
-(setq x-stretch-cursor t)
+(gsetq blink-cursor-blinks 1
+       echo-keystrokes 0.1
+       window-min-height 2
+       x-stretch-cursor t)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (when window-system
-  (setq frame-title-format '(buffer-file-name "%f" ("%b"))))
+  (gsetq frame-title-format '(buffer-file-name "%f" ("%b"))))
 
 ; No GUI bars.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
-(setq inhibit-startup-screen t)
+(gsetq inhibit-startup-screen t)
 
 (let ((custom-dir (concat user-emacs-directory "custom")))
   (make-directory custom-dir t)
