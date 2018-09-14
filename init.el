@@ -162,8 +162,9 @@ my-ensured-packages."
   (define-key evil-normal-state-map "~" 'evil-invert-case)
   (define-key evil-insert-state-map (kbd "RET") 'comment-indent-new-line)
 
-  ; Better file completion for :e.
+  ; Better completion for :e and :b.
   (define-key evil-ex-map "e " #'counsel-find-file)
+  (define-key evil-ex-map "b " #'ivy-switch-buffer)
 
   (general-nmap
     :prefix "\\"
