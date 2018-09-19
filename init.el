@@ -148,10 +148,6 @@ my-ensured-packages."
          evil-vsplit-window-right 1)
   (setq-default evil-symbol-word-search t)
 
-  (defun yank-to-eol ()
-    (interactive)
-    (evil-yank-characters (point) (point-at-eol) evil-this-register))
-
   ; I don't use | normally and would rather have \ as a leader than dedicate it
   ; to this.
   (define-key evil-normal-state-map "|" 'evil-execute-in-emacs-state)
