@@ -168,7 +168,7 @@ my-ensured-packages."
 
   (general-nmap
     :prefix "\\"
-    "f" #'counsel-rg))
+    "s" #'counsel-rg))
 
 (my-use-package crux
   :ensure t
