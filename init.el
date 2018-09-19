@@ -162,9 +162,15 @@ my-ensured-packages."
   (define-key evil-ex-map "e " #'counsel-find-file)
   (define-key evil-ex-map "b " #'ivy-switch-buffer)
 
+    (defun my-counsel-curdir-rg
+        (&optional initial-input extra-rg-args rg-prompt)
+      (interactive)
+      (counsel-rg initial-input default-directory extra-rg-args rg-prompt))
+
   (general-nmap
     :prefix "\\"
-    "s" #'counsel-rg))
+    "s" #'my-counsel-curdir-rg
+    "S" #'counsel-rg))
 
 (my-use-package crux
   :ensure t
@@ -348,10 +354,6 @@ my-ensured-packages."
 
     ; This doesn't belong here as such, but using a similar key binding to
     ; counsel-projectile-rg is very mnemonic.
-    (defun my-counsel-curdir-rg
-        (&optional initial-input extra-rg-args rg-prompt)
-      (interactive)
-      (counsel-rg initial-input default-directory extra-rg-args rg-prompt))
     (define-key projectile-command-map (kbd "s .") #'my-counsel-curdir-rg))
 
   (projectile-mode))
