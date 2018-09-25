@@ -688,7 +688,9 @@ my-ensured-packages."
 
 (my-use-package org
   :ensure org-plus-contrib
-  :commands org-mode)
+  :commands org-mode
+  :config
+  (use-package ox-confluence))
 
 (my-use-package php-mode
   :ensure t
