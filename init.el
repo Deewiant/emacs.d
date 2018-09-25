@@ -8,7 +8,8 @@
   (setq package-archives
         '(("gnu" . "https://elpa.gnu.org/packages/")
           ("melpa-stable" . "https://stable.melpa.org/packages/")
-          ("melpa-unstable" . "https://melpa.org/packages/")))
+          ("melpa-unstable" . "https://melpa.org/packages/")
+          ("org" . "https://orgmode.org/elpa/")))
   (package-initialize)
 
   ; We already initialized above.
@@ -684,6 +685,10 @@ my-ensured-packages."
 (my-use-package markdown-mode
   :ensure t
   :commands markdown-mode)
+
+(my-use-package org
+  :ensure org-plus-contrib
+  :commands org-mode)
 
 (my-use-package php-mode
   :ensure t
