@@ -29,6 +29,8 @@
   (require 'cl-lib)
   (require 'use-package)
 
+  (setq use-package-always-pin "melpa-unstable")
+
   (defmacro my-use-package (name &rest args)
     "Like use-package, but saves the ensured package (if any) in
 my-ensured-packages."
