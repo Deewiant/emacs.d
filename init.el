@@ -688,6 +688,7 @@ my-ensured-packages."
 
 (my-use-package org
   :ensure org-plus-contrib
+  :pin org
   :commands org-mode
   :config
   (use-package ox-confluence))
