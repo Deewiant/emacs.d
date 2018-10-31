@@ -98,8 +98,18 @@ my-ensured-packages."
     ; Don't consider evil-snipe's ; and , for repeating with . (dot).
     (evil-declare-ignore-repeat 'evil-snipe-repeat)
     (evil-declare-ignore-repeat 'evil-snipe-repeat-reverse)
-    (gsetq evil-snipe-scope 'visible
+
+    (gsetq evil-snipe-scope 'whole-buffer
            evil-snipe-repeat-scope 'whole-buffer)
+    ; Restrict fFtT to line scope. Unfortunately this doesn't apply for ; and ,
+    ; but that can't be helped.
+    ; See https://github.com/hlissner/evil-snipe/issues/63
+    (defun my-restrict-evil-snipe-line-scope (orig-fn &rest args)
+      (let ((evil-snipe-scope 'line))
+        (apply orig-fn args)))
+    (dolist (func #'(evil-snipe-f evil-snipe-F evil-snipe-t evil-snipe-T))
+      (advice-add func :around #'my-restrict-evil-snipe-line-scope))
+
     ; Don't repeat search on another press of s/S.
     (gsetq evil-snipe-repeat-keys nil))
 
