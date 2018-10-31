@@ -472,11 +472,18 @@ my-ensured-packages."
   :config
   (gsetq dumb-jump-force-searcher 'rg
          dumb-jump-selector 'ivy)
+  ; C-] is typically overridden by smart-jump, see below
   (define-key evil-normal-state-map (kbd "C-]") 'dumb-jump-go)
   (define-key evil-normal-state-map (kbd "C-w C-]") 'dumb-jump-go-other-window)
   ; C-} = C-S-]
   (define-key evil-normal-state-map (kbd "C-}") 'dumb-jump-go-prefer-external)
   (define-key evil-normal-state-map (kbd "C-w C-}") 'dumb-jump-go-prefer-external-other-window))
+
+(my-use-package smart-jump
+  :ensure t
+  :config
+  (gsetq smart-jump-jump-key "C-]")
+  (smart-jump-setup-default-registers))
 
 (my-use-package ediff
   :defer t
