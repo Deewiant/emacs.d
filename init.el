@@ -303,6 +303,11 @@ my-ensured-packages."
   :config
   (cycbuf-init))
 
+(my-use-package prescient
+  :ensure t
+  :config
+  (prescient-persist-mode))
+
 (my-use-package ivy
   :ensure t
   :bind ("C-x b" . ivy-switch-buffer)
@@ -327,6 +332,10 @@ my-ensured-packages."
     :ensure t
     :bind ("C-s" . swiper)
     :bind ("M-s o" . swiper-all))
+  (my-use-package ivy-prescient
+    :ensure t
+    :config
+    (ivy-prescient-mode))
   (my-use-package counsel-dash
     :ensure t
     :commands counsel-dash
@@ -476,7 +485,11 @@ my-ensured-packages."
   (my-use-package company-quickhelp
     :ensure t
     :config
-    (company-quickhelp-mode 1)))
+    (company-quickhelp-mode 1))
+  (my-use-package company-prescient
+    :ensure t
+    :config
+    (company-prescient-mode)))
 
 (my-use-package dumb-jump
   :ensure t
