@@ -287,9 +287,11 @@ my-ensured-packages."
   (which-key-setup-side-window-right-bottom))
 
 (my-use-package whitespace
-  :init
-  (add-hook 'whitespace-load-hook (lambda ()
-    (gsetq whitespace-style (delq 'lines whitespace-style)))))
+  :diminish global-whitespace-mode
+  :config
+  (gsetq whitespace-style
+         '(face tabs trailing space-after-tab space-before-tab tab-mark))
+  (global-whitespace-mode))
 
 (my-use-package popwin
   :ensure t
