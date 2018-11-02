@@ -303,6 +303,12 @@ my-ensured-packages."
   :config
   (cycbuf-init))
 
+(my-use-package ace-window
+  :ensure t
+  :commands ace-window
+  :config
+  (general-define-key :states 'normal "-" #'ace-window))
+
 (my-use-package prescient
   :ensure t
   :config
