@@ -182,6 +182,7 @@ my-ensured-packages."
 
   (general-nmap
     :prefix "\\"
+    "f" #'counsel-file-jump
     "s" #'my-counsel-curdir-rg
     "S" #'counsel-rg))
 
