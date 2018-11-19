@@ -726,6 +726,14 @@ my-ensured-packages."
   :ensure t
   :commands markdown-mode)
 
+(my-use-package make-mode
+  :config
+  ; company-capf is anemic here so remove it from the equation, allowing us to
+  ; fall back to our dumb keyword completion which works better in practice.
+  (add-hook 'makefile-mode-hook
+            (lambda () (setq-local company-backends
+                                   (delq 'company-capf company-backends)))))
+
 (my-use-package org
   :ensure org-plus-contrib
   :pin org
