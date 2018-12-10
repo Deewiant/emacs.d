@@ -274,6 +274,18 @@ my-ensured-packages."
   :config
   (editorconfig-mode 1))
 
+(my-use-package smerge-mode
+  :init
+  (defun my-smerge-enable-if-conflicts-found ()
+    (interactive)
+    (save-excursion
+      (goto-char (point-min))
+      (when (re-search-forward "^<<<<<<< " nil t)
+        (smerge-mode 1))))
+  (general-add-hook
+   '(find-file-hook after-revert-hook)
+   #'my-smerge-enable-if-conflicts-found))
+
 (my-use-package ws-butler
   :ensure t
   :diminish ws-butler-mode
