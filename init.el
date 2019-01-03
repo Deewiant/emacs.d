@@ -325,6 +325,10 @@ my-ensured-packages."
 (my-use-package prescient
   :ensure t
   :config
+  ; This setting is important for e.g. counsel-rg to work sanely. Maybe we
+  ; should use the default for M-x?
+  (gsetq prescient-filter-method 'regexp)
+
   (prescient-persist-mode))
 
 (my-use-package ivy
