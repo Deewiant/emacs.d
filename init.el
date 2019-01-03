@@ -175,10 +175,10 @@ my-ensured-packages."
   (define-key evil-ex-map "e " #'counsel-find-file)
   (define-key evil-ex-map "b " #'ivy-switch-buffer)
 
-    (defun my-counsel-curdir-rg
-        (&optional initial-input extra-rg-args rg-prompt)
-      (interactive)
-      (counsel-rg initial-input default-directory extra-rg-args rg-prompt))
+  (defun my-counsel-curdir-rg
+      (&optional initial-input extra-rg-args rg-prompt)
+    (interactive)
+    (counsel-rg initial-input default-directory extra-rg-args rg-prompt))
 
   (general-nmap
     :prefix "\\"
