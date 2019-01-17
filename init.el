@@ -647,6 +647,10 @@ my-ensured-packages."
   :ensure t
   :commands clojure-mode)
 
+(my-use-package cmake-mode
+  :ensure t
+  :commands cmake-mode)
+
 (my-use-package cython-mode
   :ensure t
   :commands cython-mode
