@@ -733,6 +733,10 @@ my-ensured-packages."
   :config
   (gsetq js2-mode-show-strict-warnings nil))
 
+(my-use-package kotlin-mode
+  :ensure t
+  :commands kotlin-mode)
+
 ; Removed from MELPA on 2018-01-28, see e.g.
 ; https://lists.llvm.org/pipermail/llvm-dev/2018-May/123171.html
 ;(my-use-package llvm-mode
