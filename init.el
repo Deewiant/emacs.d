@@ -520,7 +520,28 @@ my-ensured-packages."
   (my-use-package company-prescient
     :ensure t
     :config
-    (company-prescient-mode)))
+    (company-prescient-mode))
+
+  (my-use-package company-tabnine
+    :ensure t
+    :config
+    (add-to-list 'company-backends #'company-tabnine)
+
+    ; Prevent company-prescient-mode from overriding company-tabnine's own
+    ; intelligence. Adapted from company-tabnine's own README:
+    ; https://github.com/TommyX12/company-tabnine#known-issues
+    (defvar my-company-tabnine-enable-next-transform t)
+    (defun my-company--transform-candidates (func &rest args)
+      (if my-company-tabnine-enable-next-transform
+          (apply func args)
+        (setq my-company-tabnine-enable-next-transform t)
+        (car args)))
+    (defun my-company-tabnine (func &rest args)
+      (when (eq (car args) 'candidates)
+        (setq my-company-tabnine-enable-next-transform nil))
+      (apply func args))
+    (advice-add #'company--transform-candidates :around #'my-company--transform-candidates)
+    (advice-add #'company-tabnine :around #'my-company-tabnine)))
 
 (my-use-package dumb-jump
   :ensure t
