@@ -473,6 +473,7 @@ my-ensured-packages."
     (interactive)
     (company-begin-backend 'company-dabbrev))
   (global-company-mode)
+
   (use-package company-dabbrev
     :config
     ; This basically makes this equivalent to company-dabbrev-code, but without
@@ -510,10 +511,12 @@ my-ensured-packages."
   (define-key company-active-map (kbd "S-<return>") 'comment-indent-new-line)
   (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
   (define-key company-active-map [tab] 'company-complete-common-or-cycle)
+
   (my-use-package company-quickhelp
     :ensure t
     :config
     (company-quickhelp-mode 1))
+
   (my-use-package company-prescient
     :ensure t
     :config
