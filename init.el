@@ -599,12 +599,19 @@ my-ensured-packages."
   (general-add-hook '(c-mode-hook c++-mode-hook)
                     #'my-clang-format-buffer-smart-on-save))
 
-; Note: will fail if .clang-tidy file does not exist (can be empty to
-; effectively disable the checker)
 (my-use-package flycheck-clang-tidy
   :ensure t
   :init
-  (add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup))
+  ; Only enable if a .clang-tidy can be found, otherwise it fails so early that
+  ; not even any other checkers can be enabled.
+  (defun my-flycheck-clang-tidy-setup-smart ()
+    (interactive)
+    (if (locate-dominating-file
+         (or buffer-file-name default-directory)
+         ".clang-tidy")
+        (flycheck-clang-tidy-setup)
+      (message ".clang-tidy not found, so flycheck-clang-tidy not setup")))
+  (add-hook 'flycheck-mode-hook #'my-flycheck-clang-tidy-setup-smart))
 
 (my-use-package irony
   :ensure t
