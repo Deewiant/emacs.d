@@ -242,6 +242,19 @@ my-ensured-packages."
   (define-key eyebrowse-mode-map (kbd "M-8") 'eyebrowse-switch-to-window-config-8)
   (define-key eyebrowse-mode-map (kbd "M-9") 'eyebrowse-switch-to-window-config-9))
 
+(my-use-package expand-region
+  :ensure t
+  :commands er/expand-region er/contract-region
+  :init
+  (defun my-evil-visual-or-expand-region ()
+    (interactive)
+    (if (region-active-p)
+          (call-interactively 'er/expand-region)
+      (evil-visual-char)))
+
+  (define-key evil-visual-state-map "v" 'my-evil-visual-or-expand-region)
+  (define-key evil-visual-state-map (kbd "M-v") 'er/contract-region))
+
 (column-number-mode)
 (gsetq column-number-indicator-zero-based nil)
 (setq-default display-line-numbers 'relative)
