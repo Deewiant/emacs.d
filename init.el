@@ -337,7 +337,7 @@ my-ensured-packages."
 (my-use-package ace-window
   :ensure t
   :commands ace-window
-  :config
+  :init
   (general-define-key :states 'normal "-" #'ace-window))
 
 (my-use-package prescient
