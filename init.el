@@ -602,6 +602,9 @@ my-ensured-packages."
     (setq-local fill-column 72))
   (add-hook 'git-commit-mode-hook #'my-override-commit-fill-column)
 
+  (my-use-package forge
+    :ensure t)
+
   (my-use-package evil-magit
     :ensure t))
 
