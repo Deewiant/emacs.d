@@ -354,11 +354,6 @@ my-ensured-packages."
   :bind ("C-x b" . ivy-switch-buffer)
   :bind ("C-c r" . ivy-resume)
   :init
-  (my-use-package ivy-posframe
-    :ensure t
-    :config
-    (gsetq ivy-display-function #'ivy-posframe-display-at-point
-           ivy-posframe-width 80))
   (my-use-package counsel
     :ensure t
     :bind ("M-x" . my-M-x)
