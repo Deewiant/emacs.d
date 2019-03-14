@@ -5,10 +5,12 @@
 /custom
 /customs.el
 /elpa
+/forge-database.sqlite
 /irony
 /history
 /projectile.cache
 /projectile-bookmarks.eld
 /recentf
 /tramp
+/transient
 /var
