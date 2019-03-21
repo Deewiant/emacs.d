@@ -649,11 +649,12 @@ my-ensured-packages."
   ; not even any other checkers can be enabled.
   (defun my-flycheck-clang-tidy-setup-smart ()
     (interactive)
-    (if (locate-dominating-file
-         (or buffer-file-name default-directory)
-         ".clang-tidy")
-        (flycheck-clang-tidy-setup)
-      (message ".clang-tidy not found, so flycheck-clang-tidy not setup")))
+    (when (memq major-mode '(c-mode c++-mode))
+      (if (locate-dominating-file
+           (or buffer-file-name default-directory)
+           ".clang-tidy")
+          (flycheck-clang-tidy-setup)
+        (message ".clang-tidy not found, so flycheck-clang-tidy not setup"))))
   (add-hook 'flycheck-mode-hook #'my-flycheck-clang-tidy-setup-smart))
 
 (my-use-package irony
