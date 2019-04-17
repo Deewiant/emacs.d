@@ -849,6 +849,10 @@ my-ensured-packages."
       (gsetq elpy-modules (delq mod elpy-modules)))
     (define-key evil-normal-state-local-map (kbd "C-]") 'elpy-goto-definition))
 
+  (my-use-package isortify
+    :ensure t
+    :commands isortify-mode isortify-buffer)
+
   (my-use-package pyvenv
     :ensure t
     :commands pyvenv-activate pyvenv-workon))
