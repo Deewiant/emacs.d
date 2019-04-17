@@ -832,24 +832,26 @@ my-ensured-packages."
             (lambda () (modify-syntax-entry ?$ "." php-mode-syntax-table)))
   (add-hook 'php-mode-hook 'my-gtags-mode))
 
-(my-use-package elpy
-  :ensure t
-  :diminish elpy-mode
-  :commands elpy-enable
-  :init
-  ; Elpy needs to be enabled before activating python-mode so python-mode-hook
-  ; would be too late.
-  (with-eval-after-load 'python (elpy-enable))
-  :config
-  (dolist (mod '(elpy-module-flymake
-                 elpy-module-highlight-indentation
-                 elpy-module-yasnippet))
-    (gsetq elpy-modules (delq mod elpy-modules)))
-  (define-key evil-normal-state-local-map (kbd "C-]") 'elpy-goto-definition))
+; Python
+(progn
+  (my-use-package elpy
+    :ensure t
+    :diminish elpy-mode
+    :commands elpy-enable
+    :init
+    ; Elpy needs to be enabled before activating python-mode so python-mode-hook
+    ; would be too late.
+    (with-eval-after-load 'python (elpy-enable))
+    :config
+    (dolist (mod '(elpy-module-flymake
+                  elpy-module-highlight-indentation
+                  elpy-module-yasnippet))
+      (gsetq elpy-modules (delq mod elpy-modules)))
+    (define-key evil-normal-state-local-map (kbd "C-]") 'elpy-goto-definition))
 
-(my-use-package pyvenv
-  :ensure t
-  :commands pyvenv-activate pyvenv-workon)
+  (my-use-package pyvenv
+    :ensure t
+    :commands pyvenv-activate pyvenv-workon))
 
 (my-use-package puppet-mode
   :ensure t
