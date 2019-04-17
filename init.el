@@ -717,6 +717,10 @@ my-ensured-packages."
   :ensure t
   :commands dockerfile-mode)
 
+(my-use-package elixir-mode
+  :ensure t
+  :commands elixir-mode)
+
 (my-use-package feature-mode
   :ensure t
   :commands feature-mode)
