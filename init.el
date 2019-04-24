@@ -283,6 +283,7 @@ my-ensured-packages."
 
 (my-use-package dtrt-indent
   :ensure t
+  :diminish dtrt-indent-mode
   :config
   (dtrt-indent-global-mode 1))
 
