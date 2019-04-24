@@ -294,6 +294,7 @@ my-ensured-packages."
   (editorconfig-mode 1))
 
 (my-use-package smerge-mode
+  :diminish
   :init
   (defun my-smerge-enable-if-conflicts-found ()
     (interactive)
