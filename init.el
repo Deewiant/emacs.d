@@ -976,6 +976,21 @@ my-ensured-packages."
   (gsetq web-mode-enable-auto-pairing nil
          web-mode-enable-auto-quoting nil))
 
+; For empty files, enable require-final-newline. We really want this only for
+; "new files" rather than "empty files" but it works well enough as a heuristic.
+(defun my-toggle-require-final-newline ()
+  "Flips require-final-newline between nil and t, and doesn't
+modify it if it's set to another value."
+  (interactive)
+  (cl-case require-final-newline
+    ((nil) (setq-local require-final-newline t)
+     t (setq-local require-final-newline nil))))
+; Uses toggle to set, based on the assumption that the default is nil.
+(defun my-set-require-final-newline-if-empty ()
+  (interactive)
+  (if (= 0 (buffer-size)) (my-toggle-require-final-newline)))
+(add-hook 'find-file-hook #'my-set-require-final-newline-if-empty)
+
 ; Backup and auto-save into a global directory instead of next to the edited
 ; file, don't clobber hard links when backing up, delete old backups silently,
 ; and back up version controlled files as well.
