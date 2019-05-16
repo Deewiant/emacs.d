@@ -89,11 +89,6 @@ my-ensured-packages."
            evil-goggles-async-duration 0.400)
     (evil-goggles-mode))
 
-  (my-use-package evil-matchit
-    :ensure t
-    :config
-    (global-evil-matchit-mode 1))
-
   (my-use-package evil-snipe
     :ensure t
     :diminish evil-snipe-local-mode
