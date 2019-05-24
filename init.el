@@ -883,7 +883,12 @@ my-ensured-packages."
     :commands flycheck-rust-setup
     :init
     (add-hook 'rust-mode-hook #'flycheck-rust-setup))
-  (gsetq rust-format-on-save t))
+  (gsetq rust-format-on-save t)
+  ; Prefer the rust-clippy checker.
+  (defun my-set-rust-flycheck-preferred-checkers ()
+    (add-to-list 'flycheck-disabled-checkers 'rust-cargo)
+    (add-to-list 'flycheck-disabled-checkers 'rust))
+  (general-add-hook 'rust-mode-hook #'my-set-rust-flycheck-preferred-checkers))
 
 (my-use-package ensime
   :ensure t
