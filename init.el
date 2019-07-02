@@ -553,6 +553,8 @@ my-ensured-packages."
     (advice-add #'company--transform-candidates :around #'my-company--transform-candidates)
     (advice-add #'company-tabnine :around #'my-company-tabnine)))
 
+(defun my-evil-set-jump-advice (&rest ignored) (evil-set-jump))
+
 (my-use-package dumb-jump
   :ensure t
   :diminish dumb-jump-mode
@@ -564,13 +566,17 @@ my-ensured-packages."
   (define-key evil-normal-state-map (kbd "C-w C-]") 'dumb-jump-go-other-window)
   ; C-} = C-S-]
   (define-key evil-normal-state-map (kbd "C-}") 'dumb-jump-go-prefer-external)
-  (define-key evil-normal-state-map (kbd "C-w C-}") 'dumb-jump-go-prefer-external-other-window))
+  (define-key evil-normal-state-map (kbd "C-w C-}") 'dumb-jump-go-prefer-external-other-window)
+  (general-advice-add #'(dumb-jump-go dumb-jump-go-prefer-external)
+                      :before #'my-evil-set-jump-advice))
 
 (my-use-package smart-jump
   :ensure t
   :config
   (gsetq smart-jump-jump-key "C-]")
-  (smart-jump-setup-default-registers))
+  (smart-jump-setup-default-registers)
+  (general-advice-add #'smart-jump-go
+                      :before #'my-evil-set-jump-advice))
 
 (my-use-package ediff
   :defer t
